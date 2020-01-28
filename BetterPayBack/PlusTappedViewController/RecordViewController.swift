@@ -45,7 +45,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         button.addTarget(self, action: #selector(self.popup(_:)), for: .touchUpInside)
         view.addSubview(button)
         //homeButton
-        homeButton.setImage(UIImage(named: "home-icon"), for: UIControl.State.normal)
+        homeButton.setImage(UIImage(named: "home2"), for: UIControl.State.normal)
         homeButton.frame = CGRect(x: barImage.frame.width * 0.17 , y: view.frame.height * 0.9 - 7, width: 65, height: 65)
         homeButton.addTarget(self, action: #selector(self.homeButtonTapped(_:)), for: .touchUpInside)
         homeButton.tintColor = .gray

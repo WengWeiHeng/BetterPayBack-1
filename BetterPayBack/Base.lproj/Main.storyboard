@@ -13,7 +13,7 @@
         <!--Statistic View Controller-->
         <scene sceneID="b7I-g7-JfT">
             <objects>
-                <viewController id="j9H-rO-n5T" customClass="StatisticViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="statistic" id="j9H-rO-n5T" customClass="StatisticViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j5K-dI-KJC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,7 @@
         <!--Calander View Controller-->
         <scene sceneID="esx-0Z-KJr">
             <objects>
-                <viewController id="Km9-4B-jNZ" customClass="CalanderViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="calendar" id="Km9-4B-jNZ" customClass="CalanderViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Ty-3b-eex">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -157,7 +157,7 @@
         <!--Add Data View Controller-->
         <scene sceneID="lR9-18-kz7">
             <objects>
-                <viewController id="6mh-x7-Geg" customClass="AddDataViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addData" id="6mh-x7-Geg" customClass="AddDataViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BO7-sI-T3Y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -392,7 +392,7 @@
         <!--Record View Controller-->
         <scene sceneID="I2A-b4-QHP">
             <objects>
-                <viewController id="Ty5-0P-wUo" customClass="RecordViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="record" id="Ty5-0P-wUo" customClass="RecordViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3d8-xp-mb0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -499,7 +499,7 @@
         <!--Count Down View Controller-->
         <scene sceneID="q26-Fa-hC6">
             <objects>
-                <viewController id="FaU-h9-5Tb" customClass="CountDownViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="countDown" id="FaU-h9-5Tb" customClass="CountDownViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LWf-Sg-30k">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -601,7 +601,7 @@
         <!--Item-->
         <scene sceneID="LJu-95-yXH">
             <objects>
-                <viewController id="bBC-5i-9d0" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profile" id="bBC-5i-9d0" customClass="ProfileViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="haW-YF-KnF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -617,7 +617,7 @@
         <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="home" id="BYZ-38-t0r" customClass="ViewController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -633,7 +633,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Q52-bT-dTW">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="y21-lK-7dq" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="homeTabBar" automaticallyAdjustsScrollViewInsets="NO" id="y21-lK-7dq" customClass="TabBarController" customModule="BetterPayBack" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ghe-QY-N84">
                         <autoresizingMask key="autoresizingMask"/>

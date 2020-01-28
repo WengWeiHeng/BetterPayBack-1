@@ -77,7 +77,7 @@ class TabBarController: UITabBarController {
         let vc1 = homeViewController
         //let vc1 = ViewController()
         //vc1.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home-icon"), tag: 0)
+        vc1.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "home2"), tag: 0)
         let vc2 = profileViewController
         vc2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user"), tag: 1)
         let vc3 = countDownViewController
