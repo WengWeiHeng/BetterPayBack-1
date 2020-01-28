@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PayBack" representedClassName="PayBack" syncable="YES" codeGenerationType="class">
+        <attribute name="dayBorrow" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dayReturn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="haveReturned" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="hourBorrow" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hourReturn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="minuteBorrow" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="minuteReturn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="money" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="monthBorrow" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="monthReturn" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="totalMoney" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="yearBorrow" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="yearReturn" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="PayBack" positionX="-63" positionY="-18" width="128" height="270"/>
+    </elements>
 </model>

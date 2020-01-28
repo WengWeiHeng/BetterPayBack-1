@@ -13,6 +13,17 @@
 		7F9686B523E035250068A92C /* BetterPayBack.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686B323E035250068A92C /* BetterPayBack.xcdatamodeld */; };
 		7F9686B723E035280068A92C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9686B623E035280068A92C /* Assets.xcassets */; };
 		7F9686BA23E035280068A92C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9686B823E035280068A92C /* LaunchScreen.storyboard */; };
+		7F9686C623E038FB0068A92C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686C523E038FB0068A92C /* ProfileViewController.swift */; };
+		7F9686C823E03A550068A92C /* StatisticViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686C723E03A550068A92C /* StatisticViewController.swift */; };
+		7F9686CA23E03A6D0068A92C /* CountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686C923E03A6D0068A92C /* CountDownViewController.swift */; };
+		7F9686CC23E03A820068A92C /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686CB23E03A820068A92C /* RecordViewController.swift */; };
+		7F9686CE23E03A9E0068A92C /* AddDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686CD23E03A9E0068A92C /* AddDataViewController.swift */; };
+		7F9686D023E03AB50068A92C /* CalanderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686CF23E03AB50068A92C /* CalanderViewController.swift */; };
+		7F9686D223E03BB20068A92C /* PageMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686D123E03BB20068A92C /* PageMenuView.swift */; };
+		7F9686D423E03E9B0068A92C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686D323E03E9B0068A92C /* TabBarController.swift */; };
+		7F9686D623E03F070068A92C /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686D523E03F070068A92C /* PopUpViewController.swift */; };
+		7F9686D823E043170068A92C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686D723E043170068A92C /* RecordTableViewCell.swift */; };
+		7F9686DA23E0433C0068A92C /* CountDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686D923E0433C0068A92C /* CountDownTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +35,17 @@
 		7F9686B623E035280068A92C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7F9686B923E035280068A92C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F9686BB23E035280068A92C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F9686C523E038FB0068A92C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7F9686C723E03A550068A92C /* StatisticViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticViewController.swift; sourceTree = "<group>"; };
+		7F9686C923E03A6D0068A92C /* CountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownViewController.swift; sourceTree = "<group>"; };
+		7F9686CB23E03A820068A92C /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		7F9686CD23E03A9E0068A92C /* AddDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDataViewController.swift; sourceTree = "<group>"; };
+		7F9686CF23E03AB50068A92C /* CalanderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalanderViewController.swift; sourceTree = "<group>"; };
+		7F9686D123E03BB20068A92C /* PageMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMenuView.swift; sourceTree = "<group>"; };
+		7F9686D323E03E9B0068A92C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		7F9686D523E03F070068A92C /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		7F9686D723E043170068A92C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		7F9686D923E0433C0068A92C /* CountDownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +78,10 @@
 		7F9686AB23E035250068A92C /* BetterPayBack */ = {
 			isa = PBXGroup;
 			children = (
+				7F9686C223E037CF0068A92C /* ViewController */,
+				7F9686C123E037B40068A92C /* TabBar */,
+				7F9686C323E037FB0068A92C /* PlusTappedViewController */,
+				7F9686C423E0384B0068A92C /* TableViewCell */,
 				7F9686AC23E035250068A92C /* AppDelegate.swift */,
 				7F9686AE23E035250068A92C /* ViewController.swift */,
 				7F9686B023E035250068A92C /* Main.storyboard */,
@@ -65,6 +91,45 @@
 				7F9686B323E035250068A92C /* BetterPayBack.xcdatamodeld */,
 			);
 			path = BetterPayBack;
+			sourceTree = "<group>";
+		};
+		7F9686C123E037B40068A92C /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				7F9686D323E03E9B0068A92C /* TabBarController.swift */,
+				7F9686D523E03F070068A92C /* PopUpViewController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		7F9686C223E037CF0068A92C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7F9686C523E038FB0068A92C /* ProfileViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7F9686C323E037FB0068A92C /* PlusTappedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7F9686C723E03A550068A92C /* StatisticViewController.swift */,
+				7F9686D123E03BB20068A92C /* PageMenuView.swift */,
+				7F9686C923E03A6D0068A92C /* CountDownViewController.swift */,
+				7F9686CB23E03A820068A92C /* RecordViewController.swift */,
+				7F9686CD23E03A9E0068A92C /* AddDataViewController.swift */,
+				7F9686CF23E03AB50068A92C /* CalanderViewController.swift */,
+			);
+			path = PlusTappedViewController;
+			sourceTree = "<group>";
+		};
+		7F9686C423E0384B0068A92C /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7F9686D723E043170068A92C /* RecordTableViewCell.swift */,
+				7F9686D923E0433C0068A92C /* CountDownTableViewCell.swift */,
+			);
+			path = TableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +203,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F9686CE23E03A9E0068A92C /* AddDataViewController.swift in Sources */,
+				7F9686CA23E03A6D0068A92C /* CountDownViewController.swift in Sources */,
+				7F9686D423E03E9B0068A92C /* TabBarController.swift in Sources */,
 				7F9686AF23E035250068A92C /* ViewController.swift in Sources */,
+				7F9686D823E043170068A92C /* RecordTableViewCell.swift in Sources */,
 				7F9686B523E035250068A92C /* BetterPayBack.xcdatamodeld in Sources */,
+				7F9686D223E03BB20068A92C /* PageMenuView.swift in Sources */,
+				7F9686CC23E03A820068A92C /* RecordViewController.swift in Sources */,
+				7F9686D623E03F070068A92C /* PopUpViewController.swift in Sources */,
+				7F9686C623E038FB0068A92C /* ProfileViewController.swift in Sources */,
+				7F9686D023E03AB50068A92C /* CalanderViewController.swift in Sources */,
+				7F9686DA23E0433C0068A92C /* CountDownTableViewCell.swift in Sources */,
+				7F9686C823E03A550068A92C /* StatisticViewController.swift in Sources */,
 				7F9686AD23E035250068A92C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
