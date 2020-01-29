@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import Firebase
 
+//user名保存するため
+var nowUserName: String = "none"
 //nowUserのpasswordを保存するよう
 var nowUserPassword : String = "none"
 
@@ -42,29 +45,29 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         guard let password = passwordField.text else { return }
         
         //MARK: TODO:firebase会員登録
-//        Auth.auth().signIn(withEmail: email, password: password) { user, error in
-//            if error == nil && user != nil {
-//
-//                //                //userName変更
-//                //                Auth.auth().addStateDidChangeListener { (auth, user) in
-//                //                    nowUserName = NSUserName()
-//                //                    print(NSUserName())
-//                //                }
-//                //nowPasswordの記録
-//                nowUserPassword = password
-//                print("nowUserPassword:\(nowUserPassword)")
-//
-//                self.dismiss(animated: false, completion: nil)
-//
-//            }else {
-//                print("Error loging in: \(error!.localizedDescription)")
-//                //error loging アラート
-//                let alert = UIAlertController(title: "登録エラー", message: nil, preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
-//                self.present(alert, animated: true, completion: nil)
-//            }
-//        }
-//
+        Auth.auth().signIn(withEmail: email, password: password) { user, error in
+            if error == nil && user != nil {
+
+                //                //userName変更
+                //                Auth.auth().addStateDidChangeListener { (auth, user) in
+                //                    nowUserName = NSUserName()
+                //                    print(NSUserName())
+                //                }
+                //nowPasswordの記録
+                nowUserPassword = password
+                print("nowUserPassword:\(nowUserPassword)")
+
+                self.dismiss(animated: false, completion: nil)
+
+            }else {
+                print("Error loging in: \(error!.localizedDescription)")
+                //error loging アラート
+                let alert = UIAlertController(title: "登録エラー", message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "確定", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+
         
     }
     

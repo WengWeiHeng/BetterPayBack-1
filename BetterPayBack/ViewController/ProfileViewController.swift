@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
     
@@ -55,7 +56,7 @@ class ProfileViewController: UIViewController {
     func showUserName(){
         
         //MARK: TODO: userNameの変更
-        //userNameLabel.text = nowUserName
+        userNameLabel.text = nowUserName
     }
     
     // ボタンが押されたときにaddSubviewする
@@ -81,9 +82,9 @@ class ProfileViewController: UIViewController {
     @IBAction func btnLogoutTapped(_ sender: Any) {
         
         //MARK: TODO: 会員機能
-        //try! Auth.auth().signOut()
+        try! Auth.auth().signOut()
         print("ログアウトした")
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "main"){
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "menu"){
             present(controller, animated: true, completion: nil)
         }
     }

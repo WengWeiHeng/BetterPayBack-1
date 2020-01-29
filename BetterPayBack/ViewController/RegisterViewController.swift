@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController,UITextFieldDelegate {
     
@@ -33,23 +34,24 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         
         
         //MARK:TODO:firebase会員登録
-//        Auth.auth().createUser(withEmail: email, password: password) { user, error in
-//            if error == nil && user != nil{
-//                print("新規ユーザー作成した")
-//
-//                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-//                changeRequest?.displayName = userName
-//
-//                changeRequest?.commitChanges { error in
-//                    if error == nil {
-//                        print("表示するユーザー名が変更された")
-//                        self.dismiss(animated: false, completion: nil)
-//                    }
-//                }
-//            }else {
-//                print("Error creating user: \(error!.localizedDescription)")
-//            }
-//        }
+        Auth.auth().createUser(withEmail: email, password: password) { user, error in
+            if error == nil && user != nil{
+                print("新規ユーザー作成した")
+                
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest?.displayName = userName
+                
+                changeRequest?.commitChanges { error in
+                    if error == nil {
+                        print("表示するユーザー名が変更された")
+                        self.dismiss(animated: false, completion: nil)
+                    }
+                }
+            }else {
+                print("Error creating user: \(error!.localizedDescription)")
+            }
+            
+        }
         
         
     }

@@ -21,9 +21,15 @@ class MenuViewController: UIViewController {
     
 
     @IBAction func btnLoginTapped(_ sender: Any) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "login"){
+            present(controller, animated: true, completion: nil)
+        }
     }
     
     @IBAction func btnRegisterTapped(_ sender: Any) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "register"){
+            present(controller, animated: true, completion: nil)
+        }
     }
     
 }
