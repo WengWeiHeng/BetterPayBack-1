@@ -23,12 +23,17 @@ class CountDownTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        dayLabel.textColor = .white
+        leftDaysLabel.textColor = .white
+        borrowNameLabel.textColor = .white
+        tillDeadlineLabel.textColor = .white
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//
+//        // Configure the view for the selected state
+//    }
 
 }

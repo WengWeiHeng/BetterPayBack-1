@@ -362,7 +362,7 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         let appDel = (UIApplication.shared.delegate as! AppDelegate)
         let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
         let moc = context
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LentMoney3")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         //FetchRequestする
         do{
             //            //search条件
@@ -411,7 +411,7 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         let appDel = (UIApplication.shared.delegate as! AppDelegate)
         let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
         let moc = context
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LentMoney3")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         //TODO:nameMoney
         let searchContentMoney = NSPredicate(format: "name = '\(orderSetNameListValue[nameIndex])'")
         fetchRequest.predicate = searchContentMoney

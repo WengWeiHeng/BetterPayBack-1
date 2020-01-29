@@ -105,7 +105,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
         let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
         let moc = context
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LentMoney3")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         
         //FetchRequestする
         do{
@@ -126,7 +126,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
         let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
         let moc = context
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LentMoney3")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         //search条件
         let searchContent = NSPredicate(format: "haveReturned = true")
         fetchRequest.predicate = searchContent
@@ -233,7 +233,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
             let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
             let moc = context
             
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LentMoney3")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
             //search条件
             let searchContent = NSPredicate(format: "haveReturned = true")
             fetchRequest.predicate = searchContent
@@ -279,6 +279,11 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
         
         
         return cell
+    }
+    
+    //cellの高さ
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
     
     
@@ -346,7 +351,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 let appDel = (UIApplication.shared.delegate as! AppDelegate)
                 let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
                 let moc = context
-                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LentMoney3")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
                 //search条件
                 let searchContent = NSPredicate(format: "name = '\(self.dateReturnArray[indexPath.row].value(forKey: "name") as! String)'","money")
                 fetchRequest.predicate = searchContent
@@ -444,7 +449,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
         let appDel = (UIApplication.shared.delegate as! AppDelegate)
         let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
         let moc = context
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LentMoney3")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         //MARK:重複サーチ
         //search条件
         let searchContent = NSPredicate(format: "name = '\(dateReturnArray[index].value(forKey: "name") as! String)' AND yearBorrow = '\(dateReturnArray[index].value(forKey: "yearBorrow") as! String)' AND monthBorrow = '\(dateReturnArray[index].value(forKey: "monthBorrow") as! String)' AND dayBorrow = '\(dateReturnArray[index].value(forKey: "dayBorrow") as! String)'","haveReturned")

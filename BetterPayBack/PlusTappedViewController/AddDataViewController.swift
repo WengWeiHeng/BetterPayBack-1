@@ -40,9 +40,11 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
         // Do any additional setup after loading the view.
         returnButton.layer.cornerRadius = 30.0
         returnButton.layer.backgroundColor = UIColor(red: 252/255, green: 238/255, blue: 33/255, alpha: 1.0).cgColor
+        returnButton.layer.cornerRadius = 25
         
         checkButton.layer.cornerRadius = 30.0
         checkButton.layer.backgroundColor = UIColor(red: 252/255, green: 238/255, blue: 33/255, alpha: 1.0).cgColor
+        checkButton.layer.cornerRadius = 25
         
         
         
@@ -78,7 +80,7 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
         let appDel = (UIApplication.shared.delegate as! AppDelegate)
         let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
         let moc = context
-        let personEntity = NSEntityDescription.entity(forEntityName: "LentMoney3", in: moc)
+        let personEntity = NSEntityDescription.entity(forEntityName: "PayBack", in: moc)
         
         //new dataを作る
         let newPerson = NSManagedObject(entity: personEntity!, insertInto: moc)

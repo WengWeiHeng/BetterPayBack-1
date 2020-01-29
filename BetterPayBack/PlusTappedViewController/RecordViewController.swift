@@ -44,6 +44,10 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //recordTableViewのdatasource,delegate
+        recordTableView.dataSource = self
+        recordTableView.delegate = self
+        
         //MARK:fake plus button
         barImage.frame = CGRect(x: -3, y: view.frame.height - 128, width: view.frame.width + 5, height: 128)
         //plusボタン設定
@@ -104,7 +108,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
         let moc = context
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LentMoney3")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         //FetchRequestする
         do{
             //結果をresultsに入れる
@@ -150,8 +154,6 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        
-        
         let cell2 = recordTableView.dequeueReusableCell(withIdentifier: "recordCell", for: indexPath) as! RecordTableViewCell
         if let personName3 = dataArray[indexPath.row].value(forKey: "name") as? String{
             let money = dataArray[indexPath.row].value(forKey: "money") as? String
@@ -185,6 +187,11 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         return cell2
+    }
+    
+    //cellの高さ
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
     
     
@@ -246,7 +253,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
         let moc = context
         
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "LentMoney3")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         
         if (searchBar.text != ""){
             
