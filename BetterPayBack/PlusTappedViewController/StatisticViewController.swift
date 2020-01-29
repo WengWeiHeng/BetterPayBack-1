@@ -125,7 +125,7 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         self.view.addSubview(colorLabelBlue)
         
         //nameLabel(background非表示)
-        nameBackground.image = UIImage(named: "長方形長い")
+        nameBackground.image = UIImage(named: "fieldILong")
         nameBackground.frame = CGRect(x: viewWidth * 0.45, y: viewHeight * 0.2, width: viewWidth * 0.45, height: viewHeight * 0.035)
         self.view.addSubview(nameBackground)
         nameBackground.isHidden = true
@@ -200,14 +200,15 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         }else if nowView == 0 && viewController.title! == "統計"{
             nowView = 1
             
-            //RecordViewのsumOfMoney変数をとる
-            let getRecordView = RecordViewController()
-            let getRecordViewSumOfMoney = getRecordView.sumOfMoney
-            //CountDownViewのhaveReturndTotalMoney変数をとる
-            let getCountDownView = CountDownViewController()
-            let getCountDownViewHaveReturndTotalMoney = getCountDownView.haveReturndTotalMoney
+            //MARK:別のviewControllerの変数を使う
+//            //RecordViewのsumOfMoney変数をとる
+//            let getRecordView = RecordViewController()
+//            let getRecordViewSumOfMoney = getRecordView.sumOfMoney
+//            //CountDownViewのhaveReturndTotalMoney変数をとる
+//            let getCountDownView = CountDownViewController()
+//            let getCountDownViewHaveReturndTotalMoney = getCountDownView.haveReturndTotalMoney
             //percentage計算
-            let rateOfYellowMonth = getPercentage(sum: getRecordViewSumOfMoney, yellowSum: getCountDownViewHaveReturndTotalMoney)
+            let rateOfYellowMonth = getPercentage(sum: sumOfMoney, yellowSum: haveReturndTotalMoney)
             chartView!.drawChart(rate: rateOfYellowMonth)
             print("rateOfYellowMonth:\(rateOfYellowMonth)")
             putgraficLabel(graficYellow: rateOfYellowMonth)
@@ -244,15 +245,17 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         
         if nowView == 3 && viewController.title! == "統計" {
             nowView = 4
-            //RecordViewのsumOfMoney変数をとる
-            let getRecordView = RecordViewController()
-            let getRecordViewSumOfMoney = getRecordView.sumOfMoney
-            //CountDownViewのhaveReturndTotalMoney変数をとる
-            let getCountDownView = CountDownViewController()
-            let getCountDownViewHaveReturndTotalMoney = getCountDownView.haveReturndTotalMoney
             
+            //MARK:別のviewControllerの変数を使う
+//            //RecordViewのsumOfMoney変数をとる
+//            let getRecordView = RecordViewController()
+//            let getRecordViewSumOfMoney = getRecordView.sumOfMoney
+//            //CountDownViewのhaveReturndTotalMoney変数をとる
+//            let getCountDownView = CountDownViewController()
+//            let getCountDownViewHaveReturndTotalMoney = getCountDownView.haveReturndTotalMoney
+//
             //percentage計算
-            let rateOfYellowMonth = getPercentage(sum: getRecordViewSumOfMoney, yellowSum: getCountDownViewHaveReturndTotalMoney)
+            let rateOfYellowMonth = getPercentage(sum: sumOfMoney, yellowSum: haveReturndTotalMoney)
             chartView!.drawChart(rate: rateOfYellowMonth)
             print("rateOfYellowMonth:\(rateOfYellowMonth)")
             putgraficLabel(graficYellow: rateOfYellowMonth)
@@ -293,15 +296,16 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        //RecordViewのsumOfMoney変数をとる
-        let getRecordView = RecordViewController()
-        let getRecordViewSumOfMoney = getRecordView.sumOfMoney
-        //CountDownViewのhaveReturndTotalMoney変数をとる
-        let getCountDownView = CountDownViewController()
-        let getCountDownViewHaveReturndTotalMoney = getCountDownView.haveReturndTotalMoney
-        
+        //MARK:別のviewControllerの変数を使う
+//        //RecordViewのsumOfMoney変数をとる
+//        let getRecordView = RecordViewController()
+//        let getRecordViewSumOfMoney = getRecordView.sumOfMoney
+//        //CountDownViewのhaveReturndTotalMoney変数をとる
+//        let getCountDownView = CountDownViewController()
+//        let getCountDownViewHaveReturndTotalMoney = getCountDownView.haveReturndTotalMoney
+//
         //percentage計算
-        let rateOfYellowMonth = getPercentage(sum: getRecordViewSumOfMoney, yellowSum: getCountDownViewHaveReturndTotalMoney)
+        let rateOfYellowMonth = getPercentage(sum: sumOfMoney, yellowSum: haveReturndTotalMoney)
         chartView!.drawChart(rate: rateOfYellowMonth)
         print("rateOfYellowMonth:\(rateOfYellowMonth)")
         putgraficLabel(graficYellow: rateOfYellowMonth)
@@ -387,20 +391,7 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
             //nameDictionaryをcopyする
             nameDictionaryHaveReturn = nameDictionary
             print("nameDictionary:\(nameDictionary)")
-            
-            
-            //            //TODO:nameMoney
-            //            let searchContentMoney = NSPredicate(format: "name = \(orderSetNameListValue[0])")
-            //            fetchRequest.predicate = searchContentMoney
-            //            //結果をresultsに入れる
-            //            let resultsMoney = try moc.fetch(fetchRequest) as! [LentMoney3]
-            //            graficArray = resultsMoney as [NSManagedObject]
-            //            print("\(orderSetNameListValue[0]):\(nameDictionary[orderSetNameListValue[0]] ?? 0)")
-            //            for moneyOfName in resultsMoney{
-            //                nameDictionary.updateValue(Int(moneyOfName.money!)!, forKey: orderSetNameListValue[0])
-            //            }
-            //            print("nameDictionaryUpdate:\(nameDictionary)")
-            
+
         }catch{
             print("request error(withNamed)")
         }

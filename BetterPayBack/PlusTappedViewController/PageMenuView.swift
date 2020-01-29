@@ -101,11 +101,12 @@ extension PageMenuView: UIScrollViewDelegate {
     
     fileprivate func setupMenuScrollView() {
         menuScrollView = UIScrollView()
-        menuScrollView.backgroundColor = option.menuItemBackgroundColorNormal
+        //menuScrollView.backgroundColor = option.menuItemBackgroundColorNormal
+        menuScrollView.backgroundColor = .red
         menuScrollView.delegate = self
         menuScrollView.isPagingEnabled = false
         menuScrollView.showsHorizontalScrollIndicator = false
-        let x = CGRect(x: 0, y: foundationView.frame.height*0.8,
+        let x = CGRect(x: 0, y: foundationView.frame.height*0.9,
                        width: foundationView.frame.width,
                        height: foundationView.frame.height-foundationView.frame.height*0.6)
         menuScrollView.frame = x
@@ -115,8 +116,8 @@ extension PageMenuView: UIScrollViewDelegate {
     
     fileprivate func setupFoundation() {
         foundationView = UIView()
-        foundationView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1.0)
-        
+        //foundationView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1.0)
+        foundationView.backgroundColor = .red
         let a = CGRect(x: 0, y: frame.size.height*0.2, width: frame.size.width, height: 500)
         foundationView.frame = a
         
@@ -124,7 +125,8 @@ extension PageMenuView: UIScrollViewDelegate {
     }
     
     fileprivate func setupMenuButtons() {
-        var menuX = 40 as CGFloat
+        //menuXを40から105変わる
+        var menuX = 105 as CGFloat
         for i in 1...viewControllers.count {
             let viewControllerIndex = i - 1
             
@@ -336,54 +338,6 @@ extension PageMenuView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 }
 
-//// MARK: - Device Orientation
-//extension PageMenuView {
-//
-//  fileprivate func setuOrientationpNotification() {
-//    NotificationCenter.default.addObserver(self, selector: #selector(didChangeRotation), name: UIDevice.orientationDidChangeNotification, object: nil)
-//  }
-//
-//  override func removeFromSuperview() {
-//    super.removeFromSuperview()
-//    NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
-//  }
-//
-//  @objc fileprivate func didChangeRotation() {
-//    menuScrollView.frame = CGRect(x: 0, y: frame.size.height*0.3,
-//                                  width: frame.size.width,
-//                                  height: option.menuItemHeight)
-//
-//    // CollectionView Layout
-//    let collectionViewHeight = frame.size.height - menuScrollView.frame.maxY + 65
-//    let collectionViewLayout = UICollectionViewFlowLayout()
-//    collectionViewLayout.scrollDirection = .horizontal
-//    collectionViewLayout.minimumInteritemSpacing = 0
-//    collectionViewLayout.minimumLineSpacing = 0
-//    collectionViewLayout.sectionInset = .zero
-//    collectionViewLayout.itemSize = CGSize(
-//      width: frame.size.width,
-//      height: collectionViewHeight)
-//
-//    // CollectionView
-//    collectionView.frame = CGRect(x: 0,
-//                                  y: 0,
-//                                  width: frame.size.width,
-//                                  height: collectionViewHeight)
-//    collectionView.collectionViewLayout = collectionViewLayout
-//    collectionView.collectionViewLayout.invalidateLayout()
-//
-//    // Adjust to collection view offset
-//    let currentViewControllerIndex = getCurrentMenuButtonIndex() - 1
-//    collectionView.scrollToItem(
-//      at: IndexPath.init(row: currentViewControllerIndex, section: 0),
-//      at: .left,
-//      animated: true)
-//
-//    // Adjust to menu button offset
-//    let buttonIndex = currentViewControllerIndex + 1
-//    updateMenuScrollOffsetIfNeeded(menuButtonIndex: buttonIndex)
-//  }
-//}
 
 // MARK: - Supporting Functions
 extension PageMenuView {

@@ -9,23 +9,23 @@
 import UIKit
 import CoreData
 
-////総金額
-//var sumOfMoney:Int = 0
-////まだ返してないお金
-//var sumOfHaventReturnedMoney:Int = 0
-////データ保存する配列
-//var dataArray = [NSManagedObject]()
+//総金額
+var sumOfMoney:Int = 0
+//まだ返してないお金
+var sumOfHaventReturnedMoney:Int = 0
+//データ保存する配列
+var dataArray = [NSManagedObject]()
 
 
 class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
-    //総金額
-    var sumOfMoney:Int = 0
-    //まだ返してないお金
-    var sumOfHaventReturnedMoney:Int = 0
-    //データ保存する配列
-    var dataArray = [NSManagedObject]()
-    
+//    //総金額
+//    var sumOfMoney:Int = 0
+//    //まだ返してないお金
+//    var sumOfHaventReturnedMoney:Int = 0
+//    //データ保存する配列
+//    var dataArray = [NSManagedObject]()
+//    
     
     @IBOutlet weak var recordTableView: UITableView!
     @IBOutlet weak var recordSearchBar: UISearchBar!
@@ -215,7 +215,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let moc = context
                 //選択されたcellのデータを削除
                 //moc.deletedObjects(dataArray[indexPath.row])
-                moc.delete(self.dataArray[indexPath.row])
+                moc.delete(dataArray[indexPath.row])
                 //save
                 do{
                     try moc.save()

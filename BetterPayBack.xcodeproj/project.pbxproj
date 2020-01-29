@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0171E5033AE9F313104C7D /* Pods_BetterPayBack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABB841B5BAC517D6DAD0D2D /* Pods_BetterPayBack.framework */; };
 		7F9686AD23E035250068A92C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686AC23E035250068A92C /* AppDelegate.swift */; };
 		7F9686AF23E035250068A92C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686AE23E035250068A92C /* ViewController.swift */; };
 		7F9686B223E035250068A92C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9686B023E035250068A92C /* Main.storyboard */; };
@@ -24,6 +25,10 @@
 		7F9686D623E03F070068A92C /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686D523E03F070068A92C /* PopUpViewController.swift */; };
 		7F9686D823E043170068A92C /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686D723E043170068A92C /* RecordTableViewCell.swift */; };
 		7F9686DA23E0433C0068A92C /* CountDownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686D923E0433C0068A92C /* CountDownTableViewCell.swift */; };
+		7F9686E023E172BE0068A92C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686DF23E172BE0068A92C /* LoginViewController.swift */; };
+		7F9686E223E173750068A92C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686E123E173750068A92C /* RegisterViewController.swift */; };
+		7F9686E423E1752D0068A92C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686E323E1752D0068A92C /* MenuViewController.swift */; };
+		7F9686E623E178440068A92C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F9686E523E178440068A92C /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,13 @@
 		7F9686D523E03F070068A92C /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		7F9686D723E043170068A92C /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		7F9686D923E0433C0068A92C /* CountDownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTableViewCell.swift; sourceTree = "<group>"; };
+		7F9686DF23E172BE0068A92C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7F9686E123E173750068A92C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7F9686E323E1752D0068A92C /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		7F9686E523E178440068A92C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C3B6E583F6FD7D9E6027D941 /* Pods-BetterPayBack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterPayBack.debug.xcconfig"; path = "Target Support Files/Pods-BetterPayBack/Pods-BetterPayBack.debug.xcconfig"; sourceTree = "<group>"; };
+		D4F4D1AF47C94D203B77DBF6 /* Pods-BetterPayBack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterPayBack.release.xcconfig"; path = "Target Support Files/Pods-BetterPayBack/Pods-BetterPayBack.release.xcconfig"; sourceTree = "<group>"; };
+		FABB841B5BAC517D6DAD0D2D /* Pods_BetterPayBack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetterPayBack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,17 +65,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A0171E5033AE9F313104C7D /* Pods_BetterPayBack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		134A3EE0E3880E96027D5BB7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C3B6E583F6FD7D9E6027D941 /* Pods-BetterPayBack.debug.xcconfig */,
+				D4F4D1AF47C94D203B77DBF6 /* Pods-BetterPayBack.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		7F9686A023E035250068A92C = {
 			isa = PBXGroup;
 			children = (
 				7F9686AB23E035250068A92C /* BetterPayBack */,
 				7F9686AA23E035250068A92C /* Products */,
+				134A3EE0E3880E96027D5BB7 /* Pods */,
+				9FA5AA9A06638577311F29F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +113,7 @@
 				7F9686B623E035280068A92C /* Assets.xcassets */,
 				7F9686B823E035280068A92C /* LaunchScreen.storyboard */,
 				7F9686BB23E035280068A92C /* Info.plist */,
+				7F9686E523E178440068A92C /* GoogleService-Info.plist */,
 				7F9686B323E035250068A92C /* BetterPayBack.xcdatamodeld */,
 			);
 			path = BetterPayBack;
@@ -106,6 +132,9 @@
 			isa = PBXGroup;
 			children = (
 				7F9686C523E038FB0068A92C /* ProfileViewController.swift */,
+				7F9686DF23E172BE0068A92C /* LoginViewController.swift */,
+				7F9686E123E173750068A92C /* RegisterViewController.swift */,
+				7F9686E323E1752D0068A92C /* MenuViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -132,6 +161,14 @@
 			path = TableViewCell;
 			sourceTree = "<group>";
 		};
+		9FA5AA9A06638577311F29F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FABB841B5BAC517D6DAD0D2D /* Pods_BetterPayBack.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +176,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F9686BE23E035280068A92C /* Build configuration list for PBXNativeTarget "BetterPayBack" */;
 			buildPhases = (
+				30AE668C8D9790443648B5D3 /* [CP] Check Pods Manifest.lock */,
 				7F9686A523E035250068A92C /* Sources */,
 				7F9686A623E035250068A92C /* Frameworks */,
 				7F9686A723E035250068A92C /* Resources */,
+				7CC4FA6E345BE20A5532FC2F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -191,12 +230,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F9686BA23E035280068A92C /* LaunchScreen.storyboard in Resources */,
+				7F9686E623E178440068A92C /* GoogleService-Info.plist in Resources */,
 				7F9686B723E035280068A92C /* Assets.xcassets in Resources */,
 				7F9686B223E035250068A92C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30AE668C8D9790443648B5D3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BetterPayBack-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7CC4FA6E345BE20A5532FC2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BetterPayBack/Pods-BetterPayBack-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BetterPayBack/Pods-BetterPayBack-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BetterPayBack/Pods-BetterPayBack-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7F9686A523E035250068A92C /* Sources */ = {
@@ -206,6 +288,7 @@
 				7F9686CE23E03A9E0068A92C /* AddDataViewController.swift in Sources */,
 				7F9686CA23E03A6D0068A92C /* CountDownViewController.swift in Sources */,
 				7F9686D423E03E9B0068A92C /* TabBarController.swift in Sources */,
+				7F9686E023E172BE0068A92C /* LoginViewController.swift in Sources */,
 				7F9686AF23E035250068A92C /* ViewController.swift in Sources */,
 				7F9686D823E043170068A92C /* RecordTableViewCell.swift in Sources */,
 				7F9686B523E035250068A92C /* BetterPayBack.xcdatamodeld in Sources */,
@@ -213,6 +296,8 @@
 				7F9686CC23E03A820068A92C /* RecordViewController.swift in Sources */,
 				7F9686D623E03F070068A92C /* PopUpViewController.swift in Sources */,
 				7F9686C623E038FB0068A92C /* ProfileViewController.swift in Sources */,
+				7F9686E423E1752D0068A92C /* MenuViewController.swift in Sources */,
+				7F9686E223E173750068A92C /* RegisterViewController.swift in Sources */,
 				7F9686D023E03AB50068A92C /* CalanderViewController.swift in Sources */,
 				7F9686DA23E0433C0068A92C /* CountDownTableViewCell.swift in Sources */,
 				7F9686C823E03A550068A92C /* StatisticViewController.swift in Sources */,
@@ -360,6 +445,7 @@
 		};
 		7F9686BF23E035280068A92C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3B6E583F6FD7D9E6027D941 /* Pods-BetterPayBack.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -378,6 +464,7 @@
 		};
 		7F9686C023E035280068A92C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4F4D1AF47C94D203B77DBF6 /* Pods-BetterPayBack.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
