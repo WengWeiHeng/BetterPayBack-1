@@ -9,11 +9,14 @@
 import UIKit
 import CoreData
 
-//もう返した総金額
-var haveReturndTotalMoney : Int = 0
+////もう返した総金額
+//var haveReturndTotalMoney : Int = 0
 
 
 class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    //もう返した総金額
+    var haveReturndTotalMoney : Int = 0
     
     //MARK:fakeTabBar
     //plusボタン
@@ -146,12 +149,17 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
             haveReturndTotalMoney = haveReturnedArray.reduce(0) {(num1: Int, num2: Int) -> Int in
                 return num1 + num2
             }
+            //RecordViewのsumOfMoney変数をとる
+            let getRecordView = RecordViewController()
+            let getRecordViewSumOfMoney = getRecordView.sumOfMoney
+            //RecordViewのsumOfHaventReturnedMoney変数をとる
+            var getRecordViewsumOfHaventReturnedMoney = getRecordView.sumOfHaventReturnedMoney
             //まだ返してない総金額
-            sumOfHaventReturnedMoney = sumOfMoney - haveReturndTotalMoney
+            getRecordViewsumOfHaventReturnedMoney = getRecordViewSumOfMoney - haveReturndTotalMoney
             
             print("もう返した総金額配列：\(haveReturnedArray)")
             print("もう返した総金額：\(haveReturndTotalMoney)")
-            print("まだ返してない総金額：\(sumOfHaventReturnedMoney)")
+            print("まだ返してない総金額：\(getRecordViewsumOfHaventReturnedMoney)")
             
             
         }catch{
@@ -293,7 +301,11 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 let moc = context
                 //選択されたcellのデータを削除
                 //moc.deletedObjects(dataArray[indexPath.row])
-                moc.delete(dataArray[indexPath.row])
+                //RecordViewのdataArray[]変数をとる
+                let getRecordView = RecordViewController()
+                let getRecordViewDataArray = getRecordView.dataArray
+                
+                moc.delete(getRecordViewDataArray[indexPath.row])
                 //save
                 do{
                     try moc.save()

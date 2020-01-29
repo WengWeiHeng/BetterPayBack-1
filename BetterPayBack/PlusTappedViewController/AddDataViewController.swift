@@ -100,7 +100,10 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
         
         newPerson.setValue(reasonField.text, forKey: "reason")
         
-        newPerson.setValue(sumOfMoney, forKey: "totalMoney")
+        //RecordViewのsumOfMoney変数をとる
+        let getRecordView = RecordViewController()
+        let getRecordViewSumOfMoney = getRecordView.sumOfMoney
+        newPerson.setValue(getRecordViewSumOfMoney, forKey: "totalMoney")
         
         //MARK:TestReturn
         newPerson.setValue(false, forKey: "haveReturned")
