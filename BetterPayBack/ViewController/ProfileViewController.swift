@@ -23,6 +23,7 @@ class ProfileViewController: UIViewController {
     
     
     @IBOutlet weak var userNameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,7 +57,11 @@ class ProfileViewController: UIViewController {
     func showUserName(){
         
         //MARK: TODO: userNameの変更
-        userNameLabel.text = nowUserName
+        if let user = Auth.auth().currentUser {
+            let userName = String(user.displayName ?? "none")
+            userNameLabel.text = userName
+        }
+        
     }
     
     // ボタンが押されたときにaddSubviewする

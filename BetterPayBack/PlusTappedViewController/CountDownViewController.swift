@@ -279,7 +279,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
             
         }
         
-        //let x =
+        
         
         
         return cell

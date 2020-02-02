@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MenuViewController: UIViewController {
     
@@ -17,6 +18,18 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let user = Auth.auth().currentUser {
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "homeTabBar"){
+                present(controller, animated: true, completion: nil)
+            }
+            
+            let userName = String(user.displayName ?? "none")
+            print("nowUserName:\(userName)")
+        }
+        
     }
     
 

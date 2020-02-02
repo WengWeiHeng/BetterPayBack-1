@@ -26,14 +26,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Do any additional setup after loading the view.
         emailField.delegate = self
         passwordField.delegate = self
+        print("nowUserName:\(nowUserName)")
     }
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        Auth.auth().addStateDidChangeListener { (auth, user) in
-    //            nowUserName = NSUserName()
-    //        }
-    //    }
-    
+//    override func viewWillAppear(_ animated: Bool) {
+//        Auth.auth().addStateDidChangeListener { (auth, user) in
+//            nowUserName = NSUserName()
+//        }
+//    }
+
     
     @IBAction func btnReturnTapped(_ sender: Any) {
         dismiss(animated: false, completion: nil)
@@ -48,14 +49,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             if error == nil && user != nil {
 
-                //                //userName変更
-                //                Auth.auth().addStateDidChangeListener { (auth, user) in
-                //                    nowUserName = NSUserName()
-                //                    print(NSUserName())
-                //                }
+//                //userName変更
+//                Auth.auth().addStateDidChangeListener { (auth, user) in
+//                    nowUserName = NSUserName()
+//                    print("nowUserName:\(nowUserName)")
+//                }
                 //nowPasswordの記録
                 nowUserPassword = password
                 print("nowUserPassword:\(nowUserPassword)")
+                
+                let nowUser = Auth.auth().currentUser
+                nowUserName = nowUser?.displayName ?? "none"
+                print("nowUserName:\(nowUserName)")
 
                 self.dismiss(animated: false, completion: nil)
 

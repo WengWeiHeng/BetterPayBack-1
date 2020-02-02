@@ -101,8 +101,7 @@ extension PageMenuView: UIScrollViewDelegate {
     
     fileprivate func setupMenuScrollView() {
         menuScrollView = UIScrollView()
-        //menuScrollView.backgroundColor = option.menuItemBackgroundColorNormal
-        menuScrollView.backgroundColor = .red
+        menuScrollView.backgroundColor = option.menuItemBackgroundColorNormal
         menuScrollView.delegate = self
         menuScrollView.isPagingEnabled = false
         menuScrollView.showsHorizontalScrollIndicator = false
@@ -116,8 +115,7 @@ extension PageMenuView: UIScrollViewDelegate {
     
     fileprivate func setupFoundation() {
         foundationView = UIView()
-        //foundationView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1.0)
-        foundationView.backgroundColor = .red
+        foundationView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1.0)
         let a = CGRect(x: 0, y: frame.size.height*0.2, width: frame.size.width, height: 500)
         foundationView.frame = a
         
@@ -394,7 +392,7 @@ class ChartView: UIView {
     
     /// 円グラフの軸となる円を表示
     private func drawBaseChart() {
-        let shapeFrame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        let shapeFrame = CGRect.init(x: 0, y: 62, width: self.frame.width, height: self.frame.height)
         caShapeLayerForBase.frame = shapeFrame
         // グラフ下地の色
         caShapeLayerForBase.strokeColor = UIColor(red: 18/255, green: 21/255, blue: 91/255, alpha: 1.0).cgColor
@@ -411,7 +409,7 @@ class ChartView: UIView {
     
     /// 円グラフの値を示す円（半円）を表示
     private func drawValueChart(rate: Double) {
-        let shapeFrame = CGRect.init(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+        let shapeFrame = CGRect.init(x: 0, y: 62, width: self.frame.width, height: self.frame.height)
         caShapeLayerForValue.frame = shapeFrame
         
         // CAShareLayerのデザイン

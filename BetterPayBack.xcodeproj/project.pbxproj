@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,9 @@
 		7F9686E223E173750068A92C /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686E123E173750068A92C /* RegisterViewController.swift */; };
 		7F9686E423E1752D0068A92C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686E323E1752D0068A92C /* MenuViewController.swift */; };
 		7F9686E623E178440068A92C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F9686E523E178440068A92C /* GoogleService-Info.plist */; };
+		7F9686E823E1C0170068A92C /* TopCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686E723E1C0170068A92C /* TopCalendarCollectionViewCell.swift */; };
+		7F9686EA23E2593B0068A92C /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9686E923E2593B0068A92C /* CalendarCollectionViewCell.swift */; };
+		7FB6C33023E3EBD50072BFF6 /* CalendarPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB6C32F23E3EBD50072BFF6 /* CalendarPopUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		7F9686E123E173750068A92C /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7F9686E323E1752D0068A92C /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		7F9686E523E178440068A92C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7F9686E723E1C0170068A92C /* TopCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		7F9686E923E2593B0068A92C /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		7FB6C32F23E3EBD50072BFF6 /* CalendarPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPopUpViewController.swift; sourceTree = "<group>"; };
 		C3B6E583F6FD7D9E6027D941 /* Pods-BetterPayBack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterPayBack.debug.xcconfig"; path = "Target Support Files/Pods-BetterPayBack/Pods-BetterPayBack.debug.xcconfig"; sourceTree = "<group>"; };
 		D4F4D1AF47C94D203B77DBF6 /* Pods-BetterPayBack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterPayBack.release.xcconfig"; path = "Target Support Files/Pods-BetterPayBack/Pods-BetterPayBack.release.xcconfig"; sourceTree = "<group>"; };
 		FABB841B5BAC517D6DAD0D2D /* Pods_BetterPayBack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetterPayBack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +84,6 @@
 				C3B6E583F6FD7D9E6027D941 /* Pods-BetterPayBack.debug.xcconfig */,
 				D4F4D1AF47C94D203B77DBF6 /* Pods-BetterPayBack.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -148,6 +153,7 @@
 				7F9686CB23E03A820068A92C /* RecordViewController.swift */,
 				7F9686CD23E03A9E0068A92C /* AddDataViewController.swift */,
 				7F9686CF23E03AB50068A92C /* CalanderViewController.swift */,
+				7FB6C32F23E3EBD50072BFF6 /* CalendarPopUpViewController.swift */,
 			);
 			path = PlusTappedViewController;
 			sourceTree = "<group>";
@@ -157,6 +163,8 @@
 			children = (
 				7F9686D723E043170068A92C /* RecordTableViewCell.swift */,
 				7F9686D923E0433C0068A92C /* CountDownTableViewCell.swift */,
+				7F9686E723E1C0170068A92C /* TopCalendarCollectionViewCell.swift */,
+				7F9686E923E2593B0068A92C /* CalendarCollectionViewCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -289,15 +297,18 @@
 				7F9686CA23E03A6D0068A92C /* CountDownViewController.swift in Sources */,
 				7F9686D423E03E9B0068A92C /* TabBarController.swift in Sources */,
 				7F9686E023E172BE0068A92C /* LoginViewController.swift in Sources */,
+				7F9686E823E1C0170068A92C /* TopCalendarCollectionViewCell.swift in Sources */,
 				7F9686AF23E035250068A92C /* ViewController.swift in Sources */,
 				7F9686D823E043170068A92C /* RecordTableViewCell.swift in Sources */,
 				7F9686B523E035250068A92C /* BetterPayBack.xcdatamodeld in Sources */,
 				7F9686D223E03BB20068A92C /* PageMenuView.swift in Sources */,
 				7F9686CC23E03A820068A92C /* RecordViewController.swift in Sources */,
+				7F9686EA23E2593B0068A92C /* CalendarCollectionViewCell.swift in Sources */,
 				7F9686D623E03F070068A92C /* PopUpViewController.swift in Sources */,
 				7F9686C623E038FB0068A92C /* ProfileViewController.swift in Sources */,
 				7F9686E423E1752D0068A92C /* MenuViewController.swift in Sources */,
 				7F9686E223E173750068A92C /* RegisterViewController.swift in Sources */,
+				7FB6C33023E3EBD50072BFF6 /* CalendarPopUpViewController.swift in Sources */,
 				7F9686D023E03AB50068A92C /* CalanderViewController.swift in Sources */,
 				7F9686DA23E0433C0068A92C /* CountDownTableViewCell.swift in Sources */,
 				7F9686C823E03A550068A92C /* StatisticViewController.swift in Sources */,

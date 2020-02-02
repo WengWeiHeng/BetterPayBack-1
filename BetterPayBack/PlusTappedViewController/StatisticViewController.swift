@@ -126,14 +126,15 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         
         //nameLabel(background非表示)
         nameBackground.image = UIImage(named: "fieldILong")
-        nameBackground.frame = CGRect(x: viewWidth * 0.45, y: viewHeight * 0.2, width: viewWidth * 0.45, height: viewHeight * 0.035)
+        nameBackground.frame = CGRect(x: viewWidth * 0.21, y: viewHeight * 0.23, width: viewWidth * 0.6, height: viewHeight * 0.06)
         self.view.addSubview(nameBackground)
         nameBackground.isHidden = true
         //let nameField = UITextField()
-        nameField.frame = CGRect(x: viewWidth * 0.5, y: viewHeight * 0.2, width: viewWidth * 0.4, height: viewHeight * 0.03)
+        nameField.frame = CGRect(x: viewWidth * 0.3, y: viewHeight * 0.24, width: viewWidth * 0.4, height: viewHeight * 0.05)
         nameField.textColor = UIColor.black
         nameField.text = "名前を選択"
-        nameField.font = UIFont.systemFont(ofSize: 25)
+        nameField.font = UIFont.systemFont(ofSize: 35)
+        nameField.textAlignment = .center
         self.view.addSubview(nameField)
         
         
@@ -344,14 +345,14 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         let viewHeight2 = view.frame.size.height
         //graficLabel(yellow)
         //let graficLabelYellow = UILabel()
-        graficLabelYellow.frame = CGRect(x: viewWidth2 * 0.69, y: viewHeight2 * 0.53, width: viewWidth2 * 0.4, height: viewHeight2 * 0.1)
+        graficLabelYellow.frame = CGRect(x: viewWidth2 * 0.65, y: viewHeight2 * 0.62, width: viewWidth2 * 0.4, height: viewHeight2 * 0.1)
         graficLabelYellow.textColor = UIColor(red: 252/255, green: 238/255, blue: 33/255, alpha: 1)
         graficLabelYellow.text = "\(graficYellow)%"
         graficLabelYellow.font = UIFont.systemFont(ofSize: 40)
         self.view.addSubview(graficLabelYellow)
         //graficLabel(blue)
         //let graficLabelBlue = UILabel()
-        graficLabelBlue.frame = CGRect(x: viewWidth2 * 0.07, y: viewHeight2 * 0.23, width: viewWidth2 * 0.4, height: viewHeight2 * 0.1)
+        graficLabelBlue.frame = CGRect(x: viewWidth2 * 0.075, y: viewHeight2 * 0.29, width: viewWidth2 * 0.4, height: viewHeight2 * 0.1)
         graficLabelBlue.textColor = UIColor(red: 18/255, green: 21/255, blue: 91/255, alpha: 1)
         graficLabelBlue.text = "\(graficBlue)%"
         graficLabelBlue.font = UIFont.systemFont(ofSize: 40)

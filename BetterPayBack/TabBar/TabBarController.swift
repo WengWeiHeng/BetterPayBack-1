@@ -35,6 +35,8 @@ class TabBarController: UITabBarController {
         
         self.tabBar.barTintColor = .clear
         
+        
+        
         //cover用View
         let lineView = UIView()
         lineView.frame = CGRect(x: 0, y: view.frame.height * 0.853, width: view.frame.width, height: 2)
@@ -46,12 +48,7 @@ class TabBarController: UITabBarController {
         
         //plusボタン設定
         button.setImage(UIImage(named: "plus_main"), for: UIControl.State.normal)
-        
-        
         button.frame = CGRect.init(x: self.tabBar.center.x - 33, y: self.view.frame.height * 0.83, width: 70, height: 70)
-        //button.backgroundColor = UIColor(red: 252/255, green: 238/255, blue: 33/255, alpha: 1.0)
-        //button.layer.cornerRadius = 35
-        
         button.addTarget(self, action: #selector(self.popup(_:)), for: .touchUpInside)
         self.view.insertSubview(button, aboveSubview: self.tabBar)
         self.view.bringSubviewToFront(button)
@@ -97,3 +94,11 @@ class TabBarController: UITabBarController {
     
     
 }
+
+//extension UITabBar {
+//    override open func sizeThatFits(_ size: CGSize) -> CGSize {
+//        var size = super.sizeThatFits(size)
+//        size.height = 100
+//        return size
+//    }
+//}

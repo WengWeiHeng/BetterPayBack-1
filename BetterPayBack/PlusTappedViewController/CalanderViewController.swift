@@ -7,6 +7,14 @@
 //
 
 import UIKit
+import CoreData
+
+var nameOfRedDot:String = ""
+var yearOfRedDot:String = ""
+var monthOfRedDot:String = ""
+var dayOfRedDot:String = ""
+var dateOfRedDot:String = ""
+var moneyOfRedDot:String = ""
 
 class CalanderViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
@@ -24,22 +32,32 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
     let profileButton = UIButton()
     let barImage = UIImageView()
     
+    //期限を保存する配列
+    var redDotArray = [NSManagedObject]()
+    //redDotをつけたい日つけを保存する配列
+    var redDotDateArray : [String] = []
+    
+    //calendarCellタップしたらpopupするView
+    var calendarPopUpView = CalendarPopUpViewController()
+    
+    var yearOfCell:String = ""
+    var monthOfCell:String = ""
     
     
     var currentYear = Calendar.current.component(.year, from: Date())
     var currentMonth = Calendar.current.component(.month, from: Date())
-    var months = ["1月",
-                  "2月",
-                  "3月",
-                  "4月",
-                  "5月",
-                  "6月",
-                  "7月",
-                  "8月",
-                  "9月",
-                  "10月",
-                  "11月",
-                  "12月"]
+    var months = ["1",
+                  "2",
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8",
+                  "9",
+                  "10",
+                  "11",
+                  "12"]
     
     
     //月による何日があるかの計算
@@ -74,10 +92,11 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CalendarCollectionViewCell
         
         //cell.backgroundColor = UIColor(red: 230/255, green: 180/255, blue: 50/255, alpha: 1.0)
         cell.backgroundColor  = UIColor.white
+        cell.redDot.isHidden = true
         
         if let textLabel = cell.contentView.subviews[0] as? UILabel{
             
@@ -93,28 +112,99 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
             if indexPath.row + 1 - howManyItemsShouldIAdd == currentDay{
                 print("currentDay:\(currentDay)")
                 cell.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1.0)
+                //cell.redDot.isHidden = false
+                
+            }else{
+                cell.backgroundColor = .white
+                //cell.redDot.isHidden = true
             }
             //textLabel.text = "\(indexPath.row + 1)" //1から
             
-            if indexPath.row == 10 {
-                print("indexPath:\(indexPath.row)")
-                let redPath = UIBezierPath()
-                redPath.addArc(withCenter: CGPoint(x: 150, y: 150), // 中心
-                    radius: 5, // 半径
-                    startAngle: 0, // 開始角度
-                    endAngle: .pi * 2.0, // 終了角度
-                    clockwise: true) // 時計回り
+            
+            
+            //MARK:まだ返してない、赤いドットをつける
+            //haventReturned == true のDateを取る
+            let appDel = (UIApplication.shared.delegate as! AppDelegate)
+            let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+            let moc = context
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+            //search条件
+            let searchContent = NSPredicate(format: "haveReturned = false")
+            fetchRequest.predicate = searchContent
+            //FetchRequestする
+            do{
+                //結果をresultsに入れる
+                let results = try moc.fetch(fetchRequest) as! [PayBack]
                 
-                let redLayer = CAShapeLayer()
-                redLayer.path = redPath.cgPath
-                redLayer.fillColor = UIColor.red.cgColor // 塗り色
-                redLayer.strokeColor = UIColor.red.cgColor // 線の色
-                redLayer.lineWidth = 3.0 // 線の幅
-                self.view.layer.addSublayer(redLayer)
+                for info in results{
+                    
+                    //let returnDot = info.haveReturned
+                    let yearDot = info.yearReturn
+                    let monthDot = info.monthReturn
+                    let dayDot = info.dayReturn
+                    let moneyDot = info.money
+                    if yearDot == yearOfCell {
+                        let d = String(indexPath.row + 1 - howManyItemsShouldIAdd)
+                        if dayDot == d && monthDot == monthOfCell{
+                            cell.redDot.isHidden = false
+                            print("\(yearDot ?? "20xx")/\(monthOfCell)/\(d),¥\(moneyDot ?? "0")")
+                        }
+                    }else {
+                        cell.redDot.isHidden = true
+                    }
+                    
+                    
+                }
+            }catch{
+                print("request error(CountDownViewController3)")
             }
+            
+            
         }
         
+        
         return cell
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let day = indexPath.row + 1 - howManyItemsShouldIAdd
+        let beTappedDate = "\(yearOfCell)年\(monthOfCell)月\(day)日"
+        if redDotDateArray.contains(beTappedDate) == true {
+            print("タップされたcellは：\(beTappedDate)")
+            
+            
+            //search
+            let appDel = (UIApplication.shared.delegate as! AppDelegate)
+            let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+            let moc = context
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+            //MARK:重複サーチ
+            //search条件
+            let searchContent = NSPredicate(format: "yearReturn = '\(yearOfCell)' AND monthReturn = '\(monthOfCell)' AND dayReturn = '\(day)'")
+            fetchRequest.predicate = searchContent
+            
+            do{
+                let results = try moc.fetch(fetchRequest) as! [PayBack]
+                for info in results{
+                    nameOfRedDot = info.name ?? "none"
+                    moneyOfRedDot = info.money ?? "0"
+                }
+            }catch{
+                print("error(left button)")
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            dateOfRedDot = beTappedDate
+            view.addSubview(calendarPopUpView.view)
+            
+        }
         
     }
     
@@ -129,6 +219,41 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, layoutcollectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath:IndexPath) -> CGSize{
         let width = collectionView.frame.width / 7
         return CGSize(width: width, height: 60) //cellの横幅はcollectionViewのframe/7,高さは40
+    }
+    
+    func getDataOfRedDot(){
+        let appDel = (UIApplication.shared.delegate as! AppDelegate)
+        let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+        let moc = context
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+        //search条件
+        let searchContent = NSPredicate(format: "haveReturned = false")
+        fetchRequest.predicate = searchContent
+        //FetchRequestする
+        do{
+            //結果をresultsに入れる
+            let results = try moc.fetch(fetchRequest) as! [PayBack]
+            redDotArray = results as [NSManagedObject]
+            for info in results{
+                //guard let name = info.name else {return}
+                guard let year = info.yearReturn else {return}
+                guard let month = info.monthReturn else {return}
+                guard let day = info.dayReturn else {return}
+                
+                let fullReturnDate = "\(year)年\(month)月\(day)日"
+                redDotDateArray.append(fullReturnDate)
+//                //返したお金を保存する配列
+//                if info.yearReturn != nil {
+//                    let moneyInt = Int(info.money!)!
+//                    haveReturnedArray.append(moneyInt)
+//                }
+            }
+
+        }catch{
+            print("request error(CountDownViewController2)")
+        }
+        print(redDotDateArray)
     }
     
     
@@ -163,6 +288,7 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
         // Do any additional setup after loading the view.
         
         setUp()
+        getDataOfRedDot()
     }
     
     // ボタンが押されたときにaddSubviewする
@@ -193,6 +319,7 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
             currentYear += 1
         }
         setUp() //next月を表示され
+        
     }
     
     @IBAction func lastMonth(_ sender: Any) {
@@ -202,21 +329,20 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
             currentYear -= 1
         }
         setUp() //前の月を表示され
+        
     }
     
     ///calenderの日付けを正しく表示され
     func setUp (){
-        
-        //        var currentYear = Calendar.current.component(.year, from: Date())
-        //        var currentMonth = Calendar.current.component(.month, from: Date())
-        
         print("\(currentYear)/\(currentMonth)") //今月test
         
-        timeLabel.text = months[currentMonth - 1] + "\(currentYear)"
+        timeLabel.text = months[currentMonth - 1] + "月" + "\(currentYear)"
+        
+        monthOfCell = months[currentMonth-1]
+        yearOfCell = String(currentYear)
         
         calendar.reloadData() //今の月の日更新
-        
-        
+    
         print("whatDayIsIt：　\(whatDayIsIt)") //12/1 は金曜 (collection view item がまた5個itemを足さなければいけない)
     }
     

@@ -28,6 +28,19 @@ class PopUpViewController: UIViewController {
         //let screenWidth:CGFloat = self.view.frame.width
         //let screenHeight:CGFloat = self.view.frame.height
         
+//        let blurEffect = UIBlurEffect(style: .regular)
+//        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//        blurEffectView.frame = view.bounds
+//        view.addSubview(blurEffectView)
+        
+        //plusボタン
+        let button = UIButton.init(type: .custom)
+        //plusボタン設定
+        button.setImage(UIImage(named: "plus_main"), for: UIControl.State.normal)
+        button.frame = CGRect.init(x: view.frame.width * 0.5 - 33, y: view.frame.height * 0.83, width: 70, height: 70)
+        button.addTarget(self, action: #selector(self.tapPlus(_:)), for: .touchUpInside)
+        view.addSubview(button)
+        
         
         // 画面のどこかがタップされたらポップアップを消す処理
         let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(
@@ -99,6 +112,12 @@ class PopUpViewController: UIViewController {
         
         self.view.removeFromSuperview()
         
+    }
+    
+    //tapPlus
+    @objc func tapPlus(_ sender: UIButton) {
+        
+        self.view.removeFromSuperview()
     }
     
     // statisticボタンが押されたとき

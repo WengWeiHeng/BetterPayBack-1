@@ -14,8 +14,10 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     //var currentMonth = Calendar.current.component(.month, from: Date())
     
+    
     @IBOutlet weak var mainDateCollectionView: UICollectionView!
     
+    @IBOutlet weak var middleRetangle: UIView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var weekLabel: UILabel!
@@ -45,13 +47,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                   "11月",
                   "12月"]
     
-    var weekDays = ["日曜日",
-                    "月曜日",
-                    "火曜日",
-                    "水曜日",
-                    "木曜日",
-                    "金曜日",
-                    "土曜日"]
+    var weekDays = ["Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday"]
     //月による何日があるかの計算
     var numberOfDaysInThisMonth: Int{
         let dateComponents = DateComponents(year: currentYear, month: currentMonth)
@@ -74,6 +76,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         dateLabel.layer.borderColor  = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1.0).cgColor
         dateLabel.layer.borderWidth = 0
+        
+        middleRetangle.layer.borderWidth = 0.8
+        middleRetangle.layer.borderColor = UIColor.darkGray.cgColor
+        middleRetangle.layer.shadowColor = UIColor.black.cgColor
+        middleRetangle.layer.shadowOffset = CGSize(width: 0, height: 0)
+        middleRetangle.layer.shadowOpacity = 0.1
+        middleRetangle.layer.shadowRadius = 1
         
         mainDateCollectionView.dataSource = self
         mainDateCollectionView.delegate = self
@@ -133,7 +142,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainDateCell", for: indexPath) as UICollectionViewCell
+        //let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainDateCell", for: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainDateCell", for: indexPath) as! TopCalendarCollectionViewCell
         cell.backgroundColor  = UIColor.white
         //contents viewに加えた物を　cellのcontentViewのsubviewで探す
         //[0]はcontentviewの一つ目の物
@@ -142,10 +152,20 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
             
         }
         
-        
         let currentDay = Calendar.current.component(.day, from: Date())
         if indexPath.row == currentDay - 1 {
             cell.layer.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1.0).cgColor
+            cell.collecyionDayLabel.textColor = .white
+            cell.collecyionDayLabel.layer.borderWidth = 0
+            cell.collecyionDayLabel.layer.shadowOpacity = 0
+        }else{
+            cell.layer.backgroundColor = UIColor.white.cgColor
+            cell.collecyionDayLabel.textColor = .darkGray
+            cell.collecyionDayLabel.layer.borderWidth = 0.5
+            cell.collecyionDayLabel.layer.shadowColor = UIColor.black.cgColor
+            cell.collecyionDayLabel.layer.shadowOffset = CGSize(width: 0, height: 0)
+            cell.collecyionDayLabel.layer.shadowOpacity = 0.1
+            cell.collecyionDayLabel.layer.shadowRadius = 1
         }
         
         return cell
