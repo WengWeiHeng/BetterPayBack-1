@@ -16,6 +16,8 @@ class PasswordViewController: UIViewController {
     var password2 : String = ""
     var password3 : String = ""
     var password4 : String = ""
+    var password5 : String = ""
+    var password6 : String = ""
     
     
     var logo = UIImageView()
@@ -36,10 +38,14 @@ class PasswordViewController: UIViewController {
     var dot2 = UIImageView()
     var dot3 = UIImageView()
     var dot4 = UIImageView()
+    var dot5 = UIImageView()
+    var dot6 = UIImageView()
     var explode1 = UIImageView()
     var explode2 = UIImageView()
     var explode3 = UIImageView()
     var explode4 = UIImageView()
+    var explode5 = UIImageView()
+    var explode6 = UIImageView()
     
     
     override func viewDidLoad() {
@@ -70,6 +76,12 @@ class PasswordViewController: UIViewController {
         dot4.image = UIImage(named: "dot")
         dot4.frame = CGRect(x: view.frame.width * 0.65 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
         view.addSubview(dot4)
+        dot5.image = UIImage(named: "dot")
+        dot5.frame = CGRect(x: view.frame.width * 0.75 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
+        view.addSubview(dot5)
+        dot6.image = UIImage(named: "dot")
+        dot6.frame = CGRect(x: view.frame.width * 0.85 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
+        view.addSubview(dot6)
         
         explode1.image = UIImage(named: "explode")
         explode1.frame = CGRect(x: view.frame.width * 0.35 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
@@ -83,11 +95,19 @@ class PasswordViewController: UIViewController {
         explode4.image = UIImage(named: "explode")
         explode4.frame = CGRect(x: view.frame.width * 0.65 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
         view.addSubview(explode4)
+        explode5.image = UIImage(named: "explode")
+        explode5.frame = CGRect(x: view.frame.width * 0.75 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
+        view.addSubview(explode5)
+        explode6.image = UIImage(named: "explode")
+        explode6.frame = CGRect(x: view.frame.width * 0.85 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
+        view.addSubview(explode6)
         
         explode1.isHidden = true
         explode2.isHidden = true
         explode3.isHidden = true
         explode4.isHidden = true
+        explode5.isHidden = true
+        explode6.isHidden = true
         
         number1.setImage(UIImage(named: "number1"), for: .normal)
         number1.frame = CGRect(x: view.frame.width * 0.25 - 45, y: view.frame.height * 0.4, width: 90, height: 90)
@@ -153,8 +173,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -169,8 +189,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -185,8 +205,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -201,8 +221,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -217,8 +237,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -233,8 +253,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -249,8 +269,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -265,8 +285,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -281,8 +301,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -298,8 +318,8 @@ class PasswordViewController: UIViewController {
         if nowPassword < 0 {
             nowPassword = 0
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword >= 4 {
-            nowPassword = 4
+        }else if nowPassword >= 6 {
+            nowPassword = 6
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
@@ -315,7 +335,7 @@ class PasswordViewController: UIViewController {
             nowPassword = 0
             print("x")
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword <= 4 {
+        }else if nowPassword <= 6 {
             nowPassword -= 1
             print("x")
             print("nowPassword:\(nowPassword)")
@@ -338,13 +358,19 @@ class PasswordViewController: UIViewController {
             explode3.isHidden = true
             dot4.isHidden = false
             explode4.isHidden = true
+            dot5.isHidden = false
+            explode5.isHidden = true
+            dot6.isHidden = false
+            explode6.isHidden = true
             
             password1 = ""
             password2 = ""
             password3 = ""
             password4 = ""
+            password5 = ""
+            password6 = ""
             
-            let fullPassword = password1 + password2 + password3 + password4
+            let fullPassword = password1 + password2 + password3 + password4 + password5 + password6
             print("fullPassword:\(fullPassword)")
             
         case 1:
@@ -356,20 +382,28 @@ class PasswordViewController: UIViewController {
             explode3.isHidden = true
             dot4.isHidden = false
             explode4.isHidden = true
+            dot5.isHidden = false
+            explode5.isHidden = true
+            dot6.isHidden = false
+            explode6.isHidden = true
             
             if number.isEmpty {
                 password2 = ""
                 password3 = ""
                 password4 = ""
+                password5 = ""
+                password6 = ""
             }else{
                 password1 = "\(number)"
                 password2 = ""
                 password3 = ""
                 password4 = ""
+                password5 = ""
+                password6 = ""
             }
             
             
-            let fullPassword = password1 + password2 + password3 + password4
+            let fullPassword = password1 + password2 + password3 + password4 + password5 + password6
             print("fullPassword:\(fullPassword)")
             
         case 2:
@@ -381,18 +415,26 @@ class PasswordViewController: UIViewController {
             explode3.isHidden = true
             dot4.isHidden = false
             explode4.isHidden = true
+            dot5.isHidden = false
+            explode5.isHidden = true
+            dot6.isHidden = false
+            explode6.isHidden = true
             
             //password1 = ""
             if number.isEmpty {
                 password3 = ""
                 password4 = ""
+                password5 = ""
+                password6 = ""
             }else{
                 password2 = "\(number)"
                 password3 = ""
                 password4 = ""
+                password5 = ""
+                password6 = ""
             }
             
-            let fullPassword = password1 + password2 + password3 + password4
+            let fullPassword = password1 + password2 + password3 + password4 + password5 + password6
             print("fullPassword:\(fullPassword)")
             
         case 3:
@@ -404,20 +446,46 @@ class PasswordViewController: UIViewController {
             explode3.isHidden = false
             dot4.isHidden = false
             explode4.isHidden = true
+            dot5.isHidden = false
+            explode5.isHidden = true
+            dot6.isHidden = false
+            explode6.isHidden = true
             
             //password1 = ""
             //password2 = ""
             if number.isEmpty {
                 password4 = ""
+                password5 = ""
+                password6 = ""
             }else{
                 password3 = "\(number)"
                 password4 = ""
+                password5 = ""
+                password6 = ""
             }
             
             
-            let fullPassword = password1 + password2 + password3 + password4
+            let fullPassword = password1 + password2 + password3 + password4 + password5 + password6
             print("fullPassword:\(fullPassword)")
             
+//        case 4:
+//            dot1.isHidden = true
+//            explode1.isHidden = false
+//            dot2.isHidden = true
+//            explode2.isHidden = false
+//            dot3.isHidden = true
+//            explode3.isHidden = false
+//            dot4.isHidden = true
+//            explode4.isHidden = false
+//
+//            //password1 = ""
+//            //password2 = ""
+//            //password3 = ""
+//            password4 = "\(number)"
+//
+//
+//            let fullPassword = password1 + password2 + password3 + password4
+//            print("fullPassword:\(fullPassword)")
         case 4:
             dot1.isHidden = true
             explode1.isHidden = false
@@ -427,16 +495,69 @@ class PasswordViewController: UIViewController {
             explode3.isHidden = false
             dot4.isHidden = true
             explode4.isHidden = false
+            dot5.isHidden = false
+            explode5.isHidden = true
+            dot6.isHidden = false
+            explode6.isHidden = true
             
             //password1 = ""
             //password2 = ""
             //password3 = ""
-            password4 = "\(number)"
             
             
-            let fullPassword = password1 + password2 + password3 + password4
+            if number.isEmpty {
+                password5 = ""
+                password6 = ""
+            }else{
+                password4 = "\(number)"
+                password5 = ""
+                password6 = ""
+            }
+            
+            
+            let fullPassword = password1 + password2 + password3 + password4 + password5 + password6
             print("fullPassword:\(fullPassword)")
             
+        case 5:
+            dot1.isHidden = true
+            explode1.isHidden = false
+            dot2.isHidden = true
+            explode2.isHidden = false
+            dot3.isHidden = true
+            explode3.isHidden = false
+            dot4.isHidden = true
+            explode4.isHidden = false
+            dot5.isHidden = true
+            explode5.isHidden = false
+            dot6.isHidden = false
+            explode6.isHidden = true
+            
+            if number.isEmpty {
+                password6 = ""
+            }else{
+                password5 = "\(number)"
+                password6 = ""
+            }
+            let fullPassword = password1 + password2 + password3 + password4 + password5 + password6
+            print("fullPassword:\(fullPassword)")
+            
+        case 6:
+            dot1.isHidden = true
+            explode1.isHidden = false
+            dot2.isHidden = true
+            explode2.isHidden = false
+            dot3.isHidden = true
+            explode3.isHidden = false
+            dot4.isHidden = true
+            explode4.isHidden = false
+            dot5.isHidden = true
+            explode5.isHidden = false
+            dot6.isHidden = true
+            explode6.isHidden = false
+            
+            password6 = "\(number)"
+            let fullPassword = password1 + password2 + password3 + password4 + password5 + password6
+            print("fullPassword:\(fullPassword)")
             
         default :
             break
