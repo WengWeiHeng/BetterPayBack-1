@@ -112,6 +112,8 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
         //MARK:TestReturn
         newPerson.setValue(false, forKey: "haveReturned")
         
+        newPerson.setValue(nowUserPassword, forKey: "password")
+        
         //save
         do{
             try moc.save()

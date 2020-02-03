@@ -158,9 +158,10 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("1")
-            nowPasswordCalculate(number: "1")
+            //print("1")
             print("nowPassword:\(nowPassword)")
+            nowPasswordCalculate(number: "1")
+            
         }
         
     }
@@ -173,9 +174,10 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("2")
-            nowPasswordCalculate(number: "2")
+            //print("2")
             print("nowPassword:\(nowPassword)")
+            nowPasswordCalculate(number: "2")
+            
         }
         
     }
@@ -188,9 +190,10 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("3")
-            nowPasswordCalculate(number: "3")
+            //print("3")
             print("nowPassword:\(nowPassword)")
+            nowPasswordCalculate(number: "3")
+            
         }
         
     }
@@ -203,9 +206,10 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("4")
-            nowPasswordCalculate(number: "4")
+            //print("4")
             print("nowPassword:\(nowPassword)")
+            nowPasswordCalculate(number: "4")
+            
         }
         
     }
@@ -218,9 +222,10 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("5")
-            nowPasswordCalculate(number: "5")
+            //print("5")
             print("nowPassword:\(nowPassword)")
+            nowPasswordCalculate(number: "5")
+            
         }
         
     }
@@ -233,9 +238,10 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("6")
-            nowPasswordCalculate(number: "6")
+            //print("6")
             print("nowPassword:\(nowPassword)")
+            nowPasswordCalculate(number: "6")
+            
         }
         
     }
@@ -248,10 +254,11 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("7")
+            //print("7")
+            print("nowPassword:\(nowPassword)")
             nowPasswordCalculate(number: "7")
         }
-        print("nowPassword:\(nowPassword)")
+        
     }
     
     @objc func number8Tapped(_ sender:Any){
@@ -263,10 +270,11 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("8")
+            //print("8")
+            print("nowPassword:\(nowPassword)")
             nowPasswordCalculate(number: "8")
         }
-        print("nowPassword:\(nowPassword)")
+        
         
     }
     @objc func number9Tapped(_ sender:Any){
@@ -278,10 +286,11 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("9")
+            //print("9")
+            print("nowPassword:\(nowPassword)")
             nowPasswordCalculate(number: "9")
         }
-        print("nowPassword:\(nowPassword)")
+        
         
         
     }
@@ -294,25 +303,26 @@ class PasswordViewController: UIViewController {
             print("nowPassword:\(nowPassword)")
         }else{
             nowPassword += 1
-            print("0")
+            //print("0")
+            print("nowPassword:\(nowPassword)")
             nowPasswordCalculate(number: "0")
         }
-        print("nowPassword:\(nowPassword)")
+        
         
     }
     @objc func btnBackTapped(_ sender:Any){
         if nowPassword == 0 {
             nowPassword = 0
+            print("x")
             print("nowPassword:\(nowPassword)")
-        }else if nowPassword < 4 {
+        }else if nowPassword <= 4 {
             nowPassword -= 1
             print("x")
+            print("nowPassword:\(nowPassword)")
             nowPasswordCalculate(number: "")
             
-        }else if nowPassword == 4 {
-            nowPasswordCalculate(number: "")
         }
-        print("nowPassword:\(nowPassword)")
+        
         
         
     }
@@ -347,10 +357,17 @@ class PasswordViewController: UIViewController {
             dot4.isHidden = false
             explode4.isHidden = true
             
-            password1 = "\(number)"
-            password2 = ""
-            password3 = ""
-            password4 = ""
+            if number.isEmpty {
+                password2 = ""
+                password3 = ""
+                password4 = ""
+            }else{
+                password1 = "\(number)"
+                password2 = ""
+                password3 = ""
+                password4 = ""
+            }
+            
             
             let fullPassword = password1 + password2 + password3 + password4
             print("fullPassword:\(fullPassword)")
@@ -366,9 +383,14 @@ class PasswordViewController: UIViewController {
             explode4.isHidden = true
             
             //password1 = ""
-            password2 = "\(number)"
-            password3 = ""
-            password4 = ""
+            if number.isEmpty {
+                password3 = ""
+                password4 = ""
+            }else{
+                password2 = "\(number)"
+                password3 = ""
+                password4 = ""
+            }
             
             let fullPassword = password1 + password2 + password3 + password4
             print("fullPassword:\(fullPassword)")
@@ -385,8 +407,13 @@ class PasswordViewController: UIViewController {
             
             //password1 = ""
             //password2 = ""
-            password3 = "\(number)"
-            password4 = ""
+            if number.isEmpty {
+                password4 = ""
+            }else{
+                password3 = "\(number)"
+                password4 = ""
+            }
+            
             
             let fullPassword = password1 + password2 + password3 + password4
             print("fullPassword:\(fullPassword)")
@@ -409,7 +436,7 @@ class PasswordViewController: UIViewController {
             
             let fullPassword = password1 + password2 + password3 + password4
             print("fullPassword:\(fullPassword)")
-            nowPassword -= 1
+            
             
         default :
             break

@@ -8,6 +8,9 @@
 
 import UIKit
 import Firebase
+import CoreData
+
+var passwordUpDate:String = ""
 
 class MenuViewController: UIViewController {
     
@@ -28,6 +31,29 @@ class MenuViewController: UIViewController {
             
             let userName = String(user.displayName ?? "none")
             print("nowUserName:\(userName)")
+            
+            
+            //coredataでpasswordを保存する
+            let appDel = (UIApplication.shared.delegate as! AppDelegate)
+            let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+            let moc = context
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+//            //search条件
+//            let searchContent = NSPredicate(format: "haveReturned = true")
+//            fetchRequest.predicate = searchContent
+            do{
+                //結果をresultsに入れる
+                let results = try moc.fetch(fetchRequest) as! [PayBack]
+                for password in results{
+                    //moneyTotal.append((money as AnyObject).value(forKey: "money") as! String)
+                    //haventReturnedMoneyArray.append(((money as AnyObject).value(forKey: "haveReturned") != nil))
+                    passwordUpDate = password.password ?? "UUUUUU"
+                }
+            }catch{
+                print("passwordCatchFailed(MenuView)")
+            }
+            
+            print("passwordUpDate:\(passwordUpDate)")
         }
         
     }

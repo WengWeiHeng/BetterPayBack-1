@@ -8,11 +8,14 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 //user名保存するため
 var nowUserName: String = "none"
 //nowUserのpasswordを保存するよう
 var nowUserPassword : String = "none"
+
+var passwordArray:[String] = []
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -55,8 +58,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //                    print("nowUserName:\(nowUserName)")
 //                }
                 //nowPasswordの記録
+                //nowUserPassword = password
+                
+                
+//                //coredataでpasswordを保存する
+//                let appDel = (UIApplication.shared.delegate as! AppDelegate)
+//                let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+//                let moc = context
+//                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+//                //FetchRequestする
+//                do{
+//                    //結果をresultsに入れる
+//                    let results = try moc.fetch(fetchRequest) as! [PayBack]
+//                    for info in results{
+//                        info.password = password
+//                        nowUserPassword = info.password ?? "??????"
+//                        print("nowUserPassword:\(nowUserPassword)")
+//                        passwordArray.append(info.password ?? "NNNNNN")
+//                        print(passwordArray)
+//                    }
+//
+//                }catch{
+//                    print("request error(CountDownViewController)")
+//                }
+
+
+
                 nowUserPassword = password
-                print("nowUserPassword:\(nowUserPassword)")
+                //print("nowUserPassword:\(nowUserPassword)")
                 
                 let nowUser = Auth.auth().currentUser
                 nowUserName = nowUser?.displayName ?? "none"

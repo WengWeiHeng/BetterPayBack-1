@@ -128,7 +128,13 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //money配列をInt型に変換
             var moneyIntegers: [Int] = []
             for str in moneyTotal {
-                moneyIntegers.append(Int(str)!)
+                if str != "" {
+                   moneyIntegers.append(Int(str)!)
+                }else{
+                    print("moneyがnil入ってます")
+                    return
+                }
+                //moneyIntegers.append(Int(str)!)
             }
             print("金額配列：\(moneyIntegers)")
             //reduceでmoneyInteger配列の合計を求める
