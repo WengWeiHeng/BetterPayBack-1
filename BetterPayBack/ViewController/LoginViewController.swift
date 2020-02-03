@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-import CoreData
+//import CoreData
 
 //user名保存するため
 var nowUserName: String = "none"
@@ -16,6 +16,8 @@ var nowUserName: String = "none"
 var nowUserPassword : String = "none"
 
 var passwordArray:[String] = []
+
+var savePassword:String = ""
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -84,12 +86,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
 
 
-                nowUserPassword = password
+                //nowUserPassword = password
                 //print("nowUserPassword:\(nowUserPassword)")
                 
                 let nowUser = Auth.auth().currentUser
                 nowUserName = nowUser?.displayName ?? "none"
                 print("nowUserName:\(nowUserName)")
+                
+                //savePassword = password //!!
 
                 self.dismiss(animated: false, completion: nil)
 

@@ -25,37 +25,72 @@ class MenuViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if let user = Auth.auth().currentUser {
-            if let controller = storyboard?.instantiateViewController(withIdentifier: "homeTabBar"){
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "password"){
                 present(controller, animated: true, completion: nil)
             }
             
             let userName = String(user.displayName ?? "none")
+            
+            getPassword(uN:userName)
+            
             print("nowUserName:\(userName)")
+            print("passwordTest:\(passwordTest)")
             
             
-            //coredataでpasswordを保存する
-            let appDel = (UIApplication.shared.delegate as! AppDelegate)
-            let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
-            let moc = context
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
-//            //search条件
-//            let searchContent = NSPredicate(format: "haveReturned = true")
-//            fetchRequest.predicate = searchContent
-            do{
-                //結果をresultsに入れる
-                let results = try moc.fetch(fetchRequest) as! [PayBack]
-                for password in results{
-                    //moneyTotal.append((money as AnyObject).value(forKey: "money") as! String)
-                    //haventReturnedMoneyArray.append(((money as AnyObject).value(forKey: "haveReturned") != nil))
-                    passwordUpDate = password.password ?? "UUUUUU"
-                }
-            }catch{
-                print("passwordCatchFailed(MenuView)")
-            }
+//            //coredataでpasswordを保存する
+//            let appDel = (UIApplication.shared.delegate as! AppDelegate)
+//            let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+//            let moc = context
+//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+////            //search条件
+////            let searchContent = NSPredicate(format: "haveReturned = true")
+////            fetchRequest.predicate = searchContent
+//            do{
+//                //結果をresultsに入れる
+//                let results = try moc.fetch(fetchRequest) as! [PayBack]
+//                for password in results{
+//                    //moneyTotal.append((money as AnyObject).value(forKey: "money") as! String)
+//                    //haventReturnedMoneyArray.append(((money as AnyObject).value(forKey: "haveReturned") != nil))
+//                    passwordUpDate = password.password ?? "UUUUUU"
+//                }
+//            }catch{
+//                print("passwordCatchFailed(MenuView)")
+//            }
             
-            print("passwordUpDate:\(passwordUpDate)")
+            //print("passwordUpDate:\(passwordUpDate)")
+            
+            
+            
+            
         }
         
+        
+        
+        
+        
+        
+    }
+    
+    func getPassword(uN:String){
+        let appDel = (UIApplication.shared.delegate as! AppDelegate)
+        let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+        let moc = context
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PassWord")
+        //search条件
+        let searchContent = NSPredicate(format: "userName = '\(uN)'")
+        fetchRequest.predicate = searchContent
+        
+        do{
+            //結果をresultsに入れる
+            let results = try moc.fetch(fetchRequest) as! [PassWord]
+            for info in results{
+                passwordTest = info.password ?? "xxxxxx"
+            }
+            
+        }catch{
+            print("get user,password error(PasswordViewController)")
+        }
     }
     
 

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import CoreData
+
+var passwordTest:String = "010101"
 
 class PasswordViewController: UIViewController {
 
@@ -52,6 +55,8 @@ class PasswordViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        getPassword()
+        print("passwordTest:\(passwordTest)")
         
         logo.image = UIImage(named: "newIcon")
         logo.frame = CGRect(x: view.frame.width * 0.5 - 84, y: view.frame.height * 0.1, width: 168, height: 163.8)
@@ -65,41 +70,41 @@ class PasswordViewController: UIViewController {
         view.addSubview(textLabel)
         
         dot1.image = UIImage(named: "dot")
-        dot1.frame = CGRect(x: view.frame.width * 0.35 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
+        dot1.frame = CGRect(x: view.frame.width * 0.25 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
         view.addSubview(dot1)
         dot2.image = UIImage(named: "dot")
-        dot2.frame = CGRect(x: view.frame.width * 0.45 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
+        dot2.frame = CGRect(x: view.frame.width * 0.35 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
         view.addSubview(dot2)
         dot3.image = UIImage(named: "dot")
-        dot3.frame = CGRect(x: view.frame.width * 0.55 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
+        dot3.frame = CGRect(x: view.frame.width * 0.45 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
         view.addSubview(dot3)
         dot4.image = UIImage(named: "dot")
-        dot4.frame = CGRect(x: view.frame.width * 0.65 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
+        dot4.frame = CGRect(x: view.frame.width * 0.55 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
         view.addSubview(dot4)
         dot5.image = UIImage(named: "dot")
-        dot5.frame = CGRect(x: view.frame.width * 0.75 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
+        dot5.frame = CGRect(x: view.frame.width * 0.65 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
         view.addSubview(dot5)
         dot6.image = UIImage(named: "dot")
-        dot6.frame = CGRect(x: view.frame.width * 0.85 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
+        dot6.frame = CGRect(x: view.frame.width * 0.75 - 7.5, y: view.frame.height * 0.35, width: 15, height: 15)
         view.addSubview(dot6)
         
         explode1.image = UIImage(named: "explode")
-        explode1.frame = CGRect(x: view.frame.width * 0.35 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
+        explode1.frame = CGRect(x: view.frame.width * 0.25 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
         view.addSubview(explode1)
         explode2.image = UIImage(named: "explode")
-        explode2.frame = CGRect(x: view.frame.width * 0.45 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
+        explode2.frame = CGRect(x: view.frame.width * 0.35 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
         view.addSubview(explode2)
         explode3.image = UIImage(named: "explode")
-        explode3.frame = CGRect(x: view.frame.width * 0.55 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
+        explode3.frame = CGRect(x: view.frame.width * 0.45 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
         view.addSubview(explode3)
         explode4.image = UIImage(named: "explode")
-        explode4.frame = CGRect(x: view.frame.width * 0.65 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
+        explode4.frame = CGRect(x: view.frame.width * 0.55 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
         view.addSubview(explode4)
         explode5.image = UIImage(named: "explode")
-        explode5.frame = CGRect(x: view.frame.width * 0.75 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
+        explode5.frame = CGRect(x: view.frame.width * 0.65 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
         view.addSubview(explode5)
         explode6.image = UIImage(named: "explode")
-        explode6.frame = CGRect(x: view.frame.width * 0.85 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
+        explode6.frame = CGRect(x: view.frame.width * 0.75 - 15, y: view.frame.height * 0.34, width: 30, height: 30)
         view.addSubview(explode6)
         
         explode1.isHidden = true
@@ -559,13 +564,41 @@ class PasswordViewController: UIViewController {
             let fullPassword = password1 + password2 + password3 + password4 + password5 + password6
             print("fullPassword:\(fullPassword)")
             
+            //MARK:正しいpasswordを入力したら、直接ViewControllerに遷移
+            //getPassword()
+            if passwordTest == fullPassword{
+                if let controller = storyboard?.instantiateViewController(withIdentifier: "homeTabBar"){
+                    present(controller, animated: true, completion: nil)
+                }
+            }else{
+                print("wrong password")
+            }
+            
         default :
             break
         }
     }
     
-    func isItRightPassword(){
+    func getPassword(){
+        let appDel = (UIApplication.shared.delegate as! AppDelegate)
+        let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+        let moc = context
         
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PassWord")
+        //search条件
+        let searchContent = NSPredicate(format: "userName = '\(nowUserName)'")
+        fetchRequest.predicate = searchContent
+        
+        do{
+            //結果をresultsに入れる
+            let results = try moc.fetch(fetchRequest) as! [PassWord]
+            for info in results{
+                passwordTest = info.password ?? "xxxxxx"
+            }
+            
+        }catch{
+            print("get user,password error(PasswordViewController)")
+        }
     }
     
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class RegisterViewController: UIViewController,UITextFieldDelegate {
     
@@ -44,6 +45,7 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                 changeRequest?.commitChanges { error in
                     if error == nil {
                         print("表示するユーザー名が変更された")
+                        self.newPassword(us:userName,pw:password)
                         self.dismiss(animated: false, completion: nil)
                     }
                 }
@@ -51,9 +53,36 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
                 print("Error creating user: \(error!.localizedDescription)")
             }
             
+//            self.newPassword(us:userName,pw:password)
+            
         }
         
         
+        
+    }
+    
+    func newPassword(us:String,pw:String){
+        //MARK:database
+        //saveするため
+        let appDel = (UIApplication.shared.delegate as! AppDelegate)
+        let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+        let moc = context
+        let passwordEntity = NSEntityDescription.entity(forEntityName: "PassWord", in: moc)
+        //new dataを作る
+        let newPassword = NSManagedObject(entity: passwordEntity!, insertInto: moc)
+        newPassword.setValue(us, forKey: "userName")
+        newPassword.setValue(pw, forKey: "password")
+        
+        
+        
+        //save
+        do{
+            print("us:\(us),pw:\(pw)")
+            try moc.save()
+            
+        }catch{
+            print("save error")
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
