@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-//import CoreData
+import CoreData
 
 //user名保存するため
 var nowUserName: String = "none"
@@ -41,6 +41,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //    }
 
     
+    func getPassword(uN:String){
+        let appDel = (UIApplication.shared.delegate as! AppDelegate)
+        let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+        let moc = context
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PassWord")
+        //search条件
+        let searchContent = NSPredicate(format: "userName = '\(uN)'")
+        fetchRequest.predicate = searchContent
+        
+        do{
+            //結果をresultsに入れる
+            let results = try moc.fetch(fetchRequest) as! [PassWord]
+            for info in results{
+                passwordTest = info.password ?? "xxxxxx"
+            }
+            
+        }catch{
+            print("get user,password error(PasswordViewController)")
+        }
+    }
+    
+    
+    
     @IBAction func btnReturnTapped(_ sender: Any) {
         dismiss(animated: false, completion: nil)
     }
@@ -53,47 +77,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         //MARK: TODO:firebase会員登録
         Auth.auth().signIn(withEmail: email, password: password) { user, error in
             if error == nil && user != nil {
-
-//                //userName変更
-//                Auth.auth().addStateDidChangeListener { (auth, user) in
-//                    nowUserName = NSUserName()
-//                    print("nowUserName:\(nowUserName)")
-//                }
-                //nowPasswordの記録
-                //nowUserPassword = password
-                
-                
-//                //coredataでpasswordを保存する
-//                let appDel = (UIApplication.shared.delegate as! AppDelegate)
-//                let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
-//                let moc = context
-//                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
-//                //FetchRequestする
-//                do{
-//                    //結果をresultsに入れる
-//                    let results = try moc.fetch(fetchRequest) as! [PayBack]
-//                    for info in results{
-//                        info.password = password
-//                        nowUserPassword = info.password ?? "??????"
-//                        print("nowUserPassword:\(nowUserPassword)")
-//                        passwordArray.append(info.password ?? "NNNNNN")
-//                        print(passwordArray)
-//                    }
-//
-//                }catch{
-//                    print("request error(CountDownViewController)")
-//                }
-
-
-
-                //nowUserPassword = password
-                //print("nowUserPassword:\(nowUserPassword)")
                 
                 let nowUser = Auth.auth().currentUser
                 nowUserName = nowUser?.displayName ?? "none"
                 print("nowUserName:\(nowUserName)")
                 
                 //savePassword = password //!!
+                self.getPassword(uN: nowUserName)
+                print("passwordTest(Login):\(passwordTest)")
 
                 self.dismiss(animated: false, completion: nil)
 
