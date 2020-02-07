@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 //もう返した総金額
 var haveReturndTotalMoney : Int = 0
@@ -102,6 +103,16 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
         profileButton.tintColor = .black
     }
     
+    //userNameをゲットする
+    func getUserName() -> String{
+        var userName = ""
+        if let user = Auth.auth().currentUser {
+            userName = String(user.displayName ?? "none")
+        }
+        print("nowUserDataId:\(userName)")
+        return userName
+    }
+    
     //MARK: getData
     func getData(){
         let appDel = (UIApplication.shared.delegate as! AppDelegate)
@@ -109,7 +120,10 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
         let moc = context
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
-        
+        //search条件
+        let nowUserDataID = getUserName()
+        let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)'")
+        fetchRequest.predicate = searchContent
         //FetchRequestする
         do{
             //結果をresultsに入れる
@@ -131,7 +145,8 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         //search条件
-        let searchContent = NSPredicate(format: "haveReturned = true")
+        let nowUserDataID = getUserName()
+        let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)' && haveReturned = true")
         fetchRequest.predicate = searchContent
         
         //FetchRequestする
@@ -263,7 +278,8 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
                 //search条件
-                let searchContent = NSPredicate(format: "haveReturned = true")
+                let nowUserDataID = getUserName()
+                let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)' && haveReturned = true")
                 fetchRequest.predicate = searchContent
                 //FetchRequestする
                 do{
@@ -587,7 +603,8 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 let moc = context
                 let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
                 //search条件
-                let searchContent = NSPredicate(format: "name = '\(self.dateReturnArray[indexPath.row].value(forKey: "name") as! String)'","money")
+                let nowUserDataID = self.getUserName()
+                let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)' && name = '\(self.dateReturnArray[indexPath.row].value(forKey: "name") as! String)'","money")
                 fetchRequest.predicate = searchContent
 
                 //var sendNameField = ""
@@ -688,7 +705,8 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         //MARK:重複サーチ
         //search条件
-        let searchContent = NSPredicate(format: "name = '\(dateReturnArray[index].value(forKey: "name") as! String)' AND yearBorrow = '\(dateReturnArray[index].value(forKey: "yearBorrow") as! String)' AND monthBorrow = '\(dateReturnArray[index].value(forKey: "monthBorrow") as! String)' AND dayBorrow = '\(dateReturnArray[index].value(forKey: "dayBorrow") as! String)'","haveReturned")
+        let nowUserDataID = getUserName()
+        let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)' && name = '\(dateReturnArray[index].value(forKey: "name") as! String)' AND yearBorrow = '\(dateReturnArray[index].value(forKey: "yearBorrow") as! String)' AND monthBorrow = '\(dateReturnArray[index].value(forKey: "monthBorrow") as! String)' AND dayBorrow = '\(dateReturnArray[index].value(forKey: "dayBorrow") as! String)'","haveReturned")
         fetchRequest.predicate = searchContent
         
         do{

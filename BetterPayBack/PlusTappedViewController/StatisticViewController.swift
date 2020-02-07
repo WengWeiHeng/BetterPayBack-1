@@ -9,6 +9,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class StatisticViewController: UIViewController, PageMenuViewDelegate {
     
@@ -360,7 +361,15 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         
     }
     
-    
+    //userNameをゲットする
+    func getUserName() -> String{
+        var userName = ""
+        if let user = Auth.auth().currentUser {
+            userName = String(user.displayName ?? "none")
+        }
+        print("nowUserDataId:\(userName)")
+        return userName
+    }
     
     //MARK: (mine)getDataWithName
     func getDataWithName(){
@@ -368,6 +377,10 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
         let moc = context
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+        //search条件
+        let nowUserDataID = getUserName()
+        let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)'")
+        fetchRequest.predicate = searchContent
         //FetchRequestする
         do{
             //            //search条件
@@ -405,7 +418,8 @@ class StatisticViewController: UIViewController, PageMenuViewDelegate {
         let moc = context
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         //TODO:nameMoney
-        let searchContentMoney = NSPredicate(format: "name = '\(orderSetNameListValue[nameIndex])'")
+        let nowUserDataID = getUserName()
+        let searchContentMoney = NSPredicate(format: "dataID = '\(nowUserDataID)' && name = '\(orderSetNameListValue[nameIndex])'")
         fetchRequest.predicate = searchContentMoney
         
         do{

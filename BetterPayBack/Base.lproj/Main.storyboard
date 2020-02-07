@@ -414,6 +414,27 @@
                                     <action selector="checkBtnTapped:" destination="6mh-x7-Geg" eventType="touchUpInside" id="qxn-TZ-exc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGx-nS-57i">
+                                <rect key="frame" x="370" y="248" width="31" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmZ-g0-UwJ">
+                                <rect key="frame" x="370" y="339" width="31" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4s-yt-q5e">
+                                <rect key="frame" x="370" y="488" width="31" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94305092099999999" green="0.53017431500000001" blue="0.38374751810000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -423,6 +444,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="borrowKome" destination="gmZ-g0-UwJ" id="8vR-L7-EOS"/>
                         <outlet property="checkButton" destination="d5P-Kh-nxb" id="ELb-jm-7JK"/>
                         <outlet property="dayBorrow" destination="fFS-aI-MKZ" id="4M1-qB-DMH"/>
                         <outlet property="dayBorrowImg" destination="9Bm-lP-JAb" id="rEx-VB-G8P"/>
@@ -438,12 +460,14 @@
                         <outlet property="minuteReturnImg" destination="7Ul-a8-p8h" id="hVM-ae-Jff"/>
                         <outlet property="moneyField" destination="goD-KG-jrE" id="w5V-AF-JM7"/>
                         <outlet property="moneyFieldImg" destination="JgR-Pi-6mf" id="SHQ-Rl-aIp"/>
+                        <outlet property="moneyKome" destination="x4s-yt-q5e" id="fK0-E7-Sfz"/>
                         <outlet property="monthBorrow" destination="gYx-wv-4V8" id="4IQ-An-NVZ"/>
                         <outlet property="monthBorrowImg" destination="twZ-Cj-444" id="G3x-pf-KRf"/>
                         <outlet property="monthReturn" destination="Imh-bY-Lba" id="Mck-Qm-BxN"/>
                         <outlet property="monthReturnImg" destination="eYR-uD-qaB" id="WT0-bS-IR6"/>
                         <outlet property="nameField" destination="A56-8G-3hK" id="I3n-b0-UpZ"/>
                         <outlet property="nameFieldImg" destination="94q-7f-X46" id="1YZ-wh-sP2"/>
+                        <outlet property="nameKome" destination="IGx-nS-57i" id="GZR-iV-P13"/>
                         <outlet property="reasonField" destination="Shf-dI-Fvc" id="N43-oX-j9m"/>
                         <outlet property="reasonImg" destination="z3V-Jy-6ix" id="plc-a8-C8C"/>
                         <outlet property="returnButton" destination="vCk-6T-f6h" id="h1p-Kv-8Ez"/>

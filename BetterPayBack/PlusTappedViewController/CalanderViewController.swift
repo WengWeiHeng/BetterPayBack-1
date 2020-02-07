@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 var nameOfRedDot:String = ""
 var yearOfRedDot:String = ""
@@ -131,7 +132,8 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
             let moc = context
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
             //search条件
-            let searchContent = NSPredicate(format: "haveReturned = false")
+            let nowUserDataID = getUserName()
+            let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)' && haveReturned = false")
             fetchRequest.predicate = searchContent
             //FetchRequestする
             do{
@@ -183,7 +185,8 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
             //MARK:重複サーチ
             //search条件
-            let searchContent = NSPredicate(format: "yearReturn = '\(yearOfCell)' AND monthReturn = '\(monthOfCell)' AND dayReturn = '\(day)'")
+            let nowUserDataID = getUserName()
+            let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)' && yearReturn = '\(yearOfCell)' AND monthReturn = '\(monthOfCell)' AND dayReturn = '\(day)'")
             fetchRequest.predicate = searchContent
             
             do{
@@ -230,7 +233,8 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
         //search条件
-        let searchContent = NSPredicate(format: "haveReturned = false")
+        let nowUserDataID = getUserName()
+        let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)' && haveReturned = false")
         fetchRequest.predicate = searchContent
         //FetchRequestする
         do{
@@ -256,6 +260,16 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
             print("request error(CountDownViewController2)")
         }
         print(redDotDateArray)
+    }
+    
+    //userNameをゲットする
+    func getUserName() -> String{
+        var userName = ""
+        if let user = Auth.auth().currentUser {
+            userName = String(user.displayName ?? "none")
+        }
+        print("nowUserDataId:\(userName)")
+        return userName
     }
     
     

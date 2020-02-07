@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 //総金額
 var sumOfMoney:Int = 0
@@ -103,7 +104,15 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         recordTableView.reloadData()
     }
     
-    
+    //userNameをゲットする
+    func getUserName() -> String{
+        var userName = ""
+        if let user = Auth.auth().currentUser {
+            userName = String(user.displayName ?? "none")
+        }
+        print("nowUserDataId:\(userName)")
+        return userName
+    }
     //MARK: getData
     func getData(){
         let appDel = (UIApplication.shared.delegate as! AppDelegate)
@@ -111,6 +120,10 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let moc = context
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+        //search条件
+        let nowUserDataID = getUserName()
+        let searchContent = NSPredicate(format: "dataID = '\(nowUserDataID)'")
+        fetchRequest.predicate = searchContent
         //FetchRequestする
         do{
             //結果をresultsに入れる
@@ -122,7 +135,11 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
             var moneyTotal:[String] = []
             
             for money in results{
-                moneyTotal.append((money as AnyObject).value(forKey: "money") as! String)
+                guard let getMoney:String = money.money else {return}
+                moneyTotal.append(getMoney)
+                //moneyTotal.append((money as AnyObject).value(forKey: "money") as! String)
+                
+                
                 //haventReturnedMoneyArray.append(((money as AnyObject).value(forKey: "haveReturned") != nil))
                 
             }

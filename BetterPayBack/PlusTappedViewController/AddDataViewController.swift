@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class AddDataViewController: UIViewController,UITextFieldDelegate {
     
@@ -42,6 +43,9 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var minuteReturn: UITextField!
     @IBOutlet weak var minuteReturnImg: UIImageView!
     
+    @IBOutlet weak var nameKome: UILabel!
+    @IBOutlet weak var borrowKome: UILabel!
+    @IBOutlet weak var moneyKome: UILabel!
     
     @IBOutlet weak var returnButton: UIButton!
     @IBOutlet weak var checkButton: UIButton!
@@ -89,18 +93,38 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
     
     
     @IBAction func checkBtnTapped(_ sender: Any) {
-        //saveするため
-        let appDel = (UIApplication.shared.delegate as! AppDelegate)
-        let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
-        let moc = context
-        let personEntity = NSEntityDescription.entity(forEntityName: "PayBack", in: moc)
-        
-        //new dataを作る
-        let newPerson = NSManagedObject(entity: personEntity!, insertInto: moc)
         
         //入力したかどうかチェック
-        if reasonField == nil {
+        if nameField.text == "" || moneyField.text == "" || yearBorrow.text == "" || monthBorrow.text == "" || dayBorrow.text == ""{
+            
+            //alert表示
+            let alert = UIAlertController(title: "アラート", message: "＊付いている欄入力未完了", preferredStyle: UIAlertController.Style.alert)
+            
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+            })
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            
+            
+            
+        }else{
+            //saveするため
+            let appDel = (UIApplication.shared.delegate as! AppDelegate)
+            let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+            let moc = context
+            let personEntity = NSEntityDescription.entity(forEntityName: "PayBack", in: moc)
+            
+            //new dataを作る
+            let newPerson = NSManagedObject(entity: personEntity!, insertInto: moc)
+            
             //atributeを加入
+            let nowUserDataId = getUserName() //どのuserのdataを判断
+            newPerson.setValue(nowUserDataId, forKey: "dataID")
+            
             newPerson.setValue(nameField.text, forKey: "name")
             newPerson.setValue(moneyField.text, forKey: "money")
             
@@ -144,25 +168,23 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
             }
             
             
-        }else{
-            //alert表示
-            let alert = UIAlertController(title: "アラート", message: "理由を入力してください", preferredStyle: UIAlertController.Style.alert)
-            
-            // キャンセルボタン
-            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("Cancel")
-            })
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true, completion: nil)
-            
         }
         
         
         
         
         
+    }
+    
+    //userName記録
+    func getUserName() -> String{
+        var userName = ""
+        if let user = Auth.auth().currentUser {
+            userName = String(user.displayName ?? "none")
+            
+        }
+        print("nowUserDataId:\(userName)")
+        return userName
     }
     
     
