@@ -94,9 +94,17 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func btnSetupTapped(_ sender: Any) {
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "setup"){
+            present(controller, animated: false, completion: nil)
+        }
+    }
+    
+    
     @IBAction func btnHelpTapped(_ sender: Any) {
         //外部ブラウザでURLを開く
-        let url = NSURL(string: "https://gpcjoy3887.wixsite.com/better-pay-back")
+        let url = NSURL(string: "https://gpcjoy3887.wixsite.com/better-pay-back/blank-2")
         if UIApplication.shared.canOpenURL(url! as URL){
             UIApplication.shared.open(url! as URL, options: [:], completionHandler: nil)
         }

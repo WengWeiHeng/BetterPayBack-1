@@ -108,9 +108,11 @@ class CalanderViewController: UIViewController, UICollectionViewDataSource, UICo
             }
             
             //今日の日付の所、色変換
-            let currentDay = Calendar.current.component(.day, from: Date())
-            if indexPath.row + 1 - howManyItemsShouldIAdd == currentDay{
-                print("currentDay:\(currentDay)")
+            let currentDay2 = Calendar.current.component(.day, from: Date())
+            let currentMonth2 = Calendar.current.component(.month, from: Date())
+            let currentYear2 = Calendar.current.component(.year, from: Date())
+            if indexPath.row + 1 - howManyItemsShouldIAdd == currentDay2 && currentMonth == currentMonth2 && currentYear == currentYear2{
+                print("currentDay:\(currentDay2)")
                 cell.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1.0)
                 //cell.redDot.isHidden = false
                 

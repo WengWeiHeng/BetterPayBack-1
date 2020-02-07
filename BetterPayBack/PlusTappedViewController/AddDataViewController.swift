@@ -14,20 +14,33 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var nameField: UITextField!
     
+    @IBOutlet weak var nameFieldImg: UIImageView!
     @IBOutlet weak var moneyField: UITextField!
+    @IBOutlet weak var moneyFieldImg: UIImageView!
     @IBOutlet weak var reasonField: UITextField!
+    @IBOutlet weak var reasonImg: UIImageView!
     
     @IBOutlet weak var yearBorrow: UITextField!
+    @IBOutlet weak var yearBorrowImg: UIImageView!
     @IBOutlet weak var monthBorrow: UITextField!
+    @IBOutlet weak var monthBorrowImg: UIImageView!
     @IBOutlet weak var dayBorrow: UITextField!
+    @IBOutlet weak var dayBorrowImg: UIImageView!
     @IBOutlet weak var hourBorrow: UITextField!
+    @IBOutlet weak var hourBorrowImg: UIImageView!
     @IBOutlet weak var minuteBorrow: UITextField!
+    @IBOutlet weak var minuteBorrowImg: UIImageView!
     
     @IBOutlet weak var yearReturn: UITextField!
+    @IBOutlet weak var yearReturnImg: UIImageView!
     @IBOutlet weak var monthReturn: UITextField!
+    @IBOutlet weak var monthReturnImg: UIImageView!
     @IBOutlet weak var dayReturn: UITextField!
+    @IBOutlet weak var dayReturnImg: UIImageView!
     @IBOutlet weak var hourReturn: UITextField!
+    @IBOutlet weak var hourReturnImg: UIImageView!
     @IBOutlet weak var minuteReturn: UITextField!
+    @IBOutlet weak var minuteReturnImg: UIImageView!
     
     
     @IBOutlet weak var returnButton: UIButton!
@@ -84,48 +97,69 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
         
         //new dataを作る
         let newPerson = NSManagedObject(entity: personEntity!, insertInto: moc)
-        //atributeを加入
-        newPerson.setValue(nameField.text, forKey: "name")
-        newPerson.setValue(moneyField.text, forKey: "money")
         
-        newPerson.setValue(yearBorrow.text, forKey: "yearBorrow")
-        newPerson.setValue(monthBorrow.text, forKey: "monthBorrow")
-        newPerson.setValue(dayBorrow.text, forKey: "dayBorrow")
-        newPerson.setValue(hourBorrow.text, forKey: "hourBorrow")
-        newPerson.setValue(minuteBorrow.text, forKey: "minuteBorrow")
-        
-        newPerson.setValue(yearReturn.text, forKey: "yearReturn")
-        newPerson.setValue(monthReturn.text, forKey: "monthReturn")
-        newPerson.setValue(dayReturn.text, forKey: "dayReturn")
-        newPerson.setValue(hourReturn.text, forKey: "hourReturn")
-        newPerson.setValue(minuteReturn.text, forKey: "minuteReturn")
-        
-        newPerson.setValue(reasonField.text, forKey: "reason")
-        
-        //MARK:別のviewControllerの変数を使う
-//        //RecordViewのsumOfMoney変数をとる
-//        let getRecordView = RecordViewController()
-//        let getRecordViewSumOfMoney = getRecordView.sumOfMoney
-        
-        newPerson.setValue(sumOfMoney, forKey: "totalMoney")
-        
-        //MARK:TestReturn
-        newPerson.setValue(false, forKey: "haveReturned")
-        
-        newPerson.setValue(nowUserPassword, forKey: "password")
-        
-        //save
-        do{
-            try moc.save()
+        //入力したかどうかチェック
+        if reasonField == nil {
+            //atributeを加入
+            newPerson.setValue(nameField.text, forKey: "name")
+            newPerson.setValue(moneyField.text, forKey: "money")
             
-        }catch{
-            print("save error")
+            newPerson.setValue(yearBorrow.text, forKey: "yearBorrow")
+            newPerson.setValue(monthBorrow.text, forKey: "monthBorrow")
+            newPerson.setValue(dayBorrow.text, forKey: "dayBorrow")
+            newPerson.setValue(hourBorrow.text, forKey: "hourBorrow")
+            newPerson.setValue(minuteBorrow.text, forKey: "minuteBorrow")
+            
+            newPerson.setValue(yearReturn.text, forKey: "yearReturn")
+            newPerson.setValue(monthReturn.text, forKey: "monthReturn")
+            newPerson.setValue(dayReturn.text, forKey: "dayReturn")
+            newPerson.setValue(hourReturn.text, forKey: "hourReturn")
+            newPerson.setValue(minuteReturn.text, forKey: "minuteReturn")
+            
+            newPerson.setValue(reasonField.text, forKey: "reason")
+            
+            //MARK:別のviewControllerの変数を使う
+            //        //RecordViewのsumOfMoney変数をとる
+            //        let getRecordView = RecordViewController()
+            //        let getRecordViewSumOfMoney = getRecordView.sumOfMoney
+            
+            newPerson.setValue(sumOfMoney, forKey: "totalMoney")
+            
+            //MARK:TestReturn
+            newPerson.setValue(false, forKey: "haveReturned")
+            
+            newPerson.setValue(nowUserPassword, forKey: "password")
+            
+            //save
+            do{
+                try moc.save()
+                
+            }catch{
+                print("save error")
+            }
+            
+            //navigationController?.popToRootViewController(animated: true)
+            if let controller = storyboard?.instantiateViewController(withIdentifier: "record"){
+                present(controller, animated: true, completion: nil)
+            }
+            
+            
+        }else{
+            //alert表示
+            let alert = UIAlertController(title: "アラート", message: "理由を入力してください", preferredStyle: UIAlertController.Style.alert)
+            
+            // キャンセルボタン
+            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("Cancel")
+            })
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+            
         }
         
-        //navigationController?.popToRootViewController(animated: true)
-        if let controller = storyboard?.instantiateViewController(withIdentifier: "record"){
-            present(controller, animated: true, completion: nil)
-        }
+        
         
         
         

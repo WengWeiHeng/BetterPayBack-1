@@ -469,28 +469,9 @@ class PasswordViewController: UIViewController {
                 password6 = ""
             }
             
-            
             let fullPassword = password1 + password2 + password3 + password4 + password5 + password6
             print("fullPassword:\(fullPassword)")
-            
-//        case 4:
-//            dot1.isHidden = true
-//            explode1.isHidden = false
-//            dot2.isHidden = true
-//            explode2.isHidden = false
-//            dot3.isHidden = true
-//            explode3.isHidden = false
-//            dot4.isHidden = true
-//            explode4.isHidden = false
-//
-//            //password1 = ""
-//            //password2 = ""
-//            //password3 = ""
-//            password4 = "\(number)"
-//
-//
-//            let fullPassword = password1 + password2 + password3 + password4
-//            print("fullPassword:\(fullPassword)")
+
         case 4:
             dot1.isHidden = true
             explode1.isHidden = false

@@ -14,6 +14,8 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     //var currentMonth = Calendar.current.component(.month, from: Date())
     
+    var totalMoneyLabel = UILabel()
+    var totalMoneyLabel2 = UILabel()
     
     @IBOutlet weak var mainDateCollectionView: UICollectionView!
     
@@ -47,13 +49,13 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
                   "11月",
                   "12月"]
     
-    var weekDays = ["Sunday",
-                    "Monday",
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday"]
+    var weekDays = ["日曜日",
+                    "月曜日",
+                    "火曜日",
+                    "水曜日",
+                    "木曜日",
+                    "金曜日",
+                    "土曜日"]
     //月による何日があるかの計算
     var numberOfDaysInThisMonth: Int{
         let dateComponents = DateComponents(year: currentYear, month: currentMonth)
@@ -88,6 +90,20 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         mainDateCollectionView.delegate = self
         
         setCalendar()
+        
+        totalMoneyLabel.layer.frame = CGRect(x: 0, y: view.frame.height * 0.57, width: view.frame.width, height: 40)
+        totalMoneyLabel.text = "今まで貸した総金額："
+        totalMoneyLabel.textColor = .white
+        totalMoneyLabel.font = UIFont.systemFont(ofSize: 27)
+        totalMoneyLabel.textAlignment = .center
+        view.addSubview(totalMoneyLabel)
+        
+        totalMoneyLabel2.layer.frame = CGRect(x: 0, y: view.frame.height * 0.62, width: view.frame.width, height: 40)
+        totalMoneyLabel2.text = "¥\(sumOfMoney)"
+        totalMoneyLabel2.textColor = .white
+        totalMoneyLabel2.font = UIFont.systemFont(ofSize: 55)
+        totalMoneyLabel2.textAlignment = .center
+        view.addSubview(totalMoneyLabel2)
         
     }
     

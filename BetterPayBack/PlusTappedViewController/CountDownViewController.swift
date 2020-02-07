@@ -36,6 +36,9 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
     
     var rowHeight: Int = 0
     
+    //もう返した値のindexPathを配列に保存
+    var haveReturnIndexArray : [Int] = []
+    
     @IBOutlet weak var countDownTableView: UITableView!
     
     override func viewDidLoad() {
@@ -193,96 +196,120 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
             let monthBorrow = dateReturnArray[indexPath.row].value(forKey: "monthBorrow") as? String
             let dayBorrow = dateReturnArray[indexPath.row].value(forKey: "dayBorrow") as? String
             
-            //returnDateの表示
-            cell.tillDeadlineLabel.text = "\(yearReturn ?? "00")年\(monthReturn ?? "00")月\(dayReturn ?? "00")日まであと"
-            cell.borrowNameLabel.text = "\(personName)"
-            cell.borrowNameLabel.font = UIFont.systemFont(ofSize: 25)
-            
-            //期限まであと何日getする
-            let getDaysLeft = daysLeft(year: yearReturn, month: monthReturn, day: dayReturn)
-            cell.leftDaysLabel.text = "\(getDaysLeft)"
-            //貸し出し日から期限まで何日getする
-            let getDaysWent = daysWent(yearB: yearBorrow, monthB: monthBorrow, dayB: dayBorrow, yearR: yearReturn, monthR: monthReturn, dayR: dayReturn)
-            
-            //wavePercentageをgetする
-            let getWavePercentage = wavePercentage(dayLeft: getDaysLeft, dayWent: getDaysWent)
-            let cellWidth = self.view.frame.width
-            //let cellHeight = self.view.frame.height
-            let cellRowHeight = countDownTableView.rowHeight
-            //print("cellRowHeight: \(cellRowHeight)")
-            
-            //waveを表示
-            cell.backWaveView.frame = CGRect(x: 10, y: 10, width: cellWidth - 20, height: cellRowHeight - 20)
-            cell.backWaveView.backgroundColor = UIColor(red: 18/255, green: 18/255, blue: 88/255, alpha: 1)
-            
-            let waveViewCGRect = CGRect(x: 10, y: 10, width: Double(cellWidth) * getWavePercentage - 20, height: Double(cellRowHeight - 20))
-            cell.waveView.frame = waveViewCGRect
-            //print("waveViewCGRect:\(waveViewCGRect)")
-            cell.waveView.backgroundColor = UIColor(red: 6/255, green: 71/255, blue: 244/255, alpha: 1)
-            
-            //cell背景がcontrollerの背景色と同じにする
-            cell.contentView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1)
-            
-            //waveImageの表示
-            cell.waveImage.image = UIImage(named: "wave")
-            let waveImageX = Double(cellWidth) * getWavePercentage - 20
-            let imageCGRect = CGRect(x: waveImageX, y: 10, width: 40, height: Double(cellRowHeight - 20))
-            cell.waveImage.frame = imageCGRect
-            
-            
-            
-            //MARK:返金表示
-            //もう返したかどうか判断して背景色を変わる
-            let appDel = (UIApplication.shared.delegate as! AppDelegate)
-            let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
-            let moc = context
-            
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
-            //search条件
-            let searchContent = NSPredicate(format: "haveReturned = true")
-            fetchRequest.predicate = searchContent
-            //FetchRequestする
-            do{
-                //結果をresultsに入れる
-                let results = try moc.fetch(fetchRequest) as! [PayBack]
-                //dataArray = results as [NSManagedObject]
+            if yearReturn!.isEmpty && monthReturn!.isEmpty && dayReturn!.isEmpty {
+                //returnDateの表示
+                cell.tillDeadlineLabel.text = "期限無し"
+                cell.tillDeadlineLabel.font = UIFont.systemFont(ofSize: 40)
+                cell.borrowNameLabel.text = "\(personName)"
+                cell.borrowNameLabel.font = UIFont.systemFont(ofSize: 25)
+                cell.dayLabel.isHidden = true
+                cell.leftDaysLabel.isHidden = true
+                cell.waveImage.isHidden = true
+                cell.backWaveView.isHidden = true
+                cell.waveView.isHidden = true
+                cell.blackView.frame = CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: countDownTableView.rowHeight - 20)
+                cell.blackView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7)
                 
-                //index記録用
-                var indexR : Int = 0
+            }else{
+                //returnDateの表示
+                cell.tillDeadlineLabel.text = "\(yearReturn ?? "00")年\(monthReturn ?? "00")月\(dayReturn ?? "00")日まであと"
+                cell.borrowNameLabel.text = "\(personName)"
+                cell.borrowNameLabel.font = UIFont.systemFont(ofSize: 25)
+                cell.dayLabel.isHidden = false
+                cell.leftDaysLabel.isHidden = false
+                cell.waveImage.isHidden = false
+                cell.backWaveView.isHidden = false
+                cell.waveView.isHidden = false
+                cell.blackView.isHidden = true
                 
-                for info in results{
-                    indexR += 1
-                    let returnInfo = dateReturnArray[indexPath.row].value(forKey: "haveReturned") as? Bool
-                    if returnInfo == true {
+                //期限まであと何日getする
+                let getDaysLeft = daysLeft(year: yearReturn, month: monthReturn, day: dayReturn)
+                cell.leftDaysLabel.text = "\(getDaysLeft)"
+                //貸し出し日から期限まで何日getする
+                let getDaysWent = daysWent(yearB: yearBorrow, monthB: monthBorrow, dayB: dayBorrow, yearR: yearReturn, monthR: monthReturn, dayR: dayReturn)
+                
+                //wavePercentageをgetする
+                let getWavePercentage = wavePercentage(dayLeft: getDaysLeft, dayWent: getDaysWent)
+                let cellWidth = self.view.frame.width
+                //let cellHeight = self.view.frame.height
+                let cellRowHeight = countDownTableView.rowHeight
+                //print("cellRowHeight: \(cellRowHeight)")
+                
+                //waveを表示
+                cell.backWaveView.frame = CGRect(x: 10, y: 10, width: cellWidth - 20, height: cellRowHeight - 20)
+                cell.backWaveView.backgroundColor = UIColor(red: 18/255, green: 18/255, blue: 88/255, alpha: 1)
+                
+                let waveViewCGRect = CGRect(x: 10, y: 10, width: Double(cellWidth) * getWavePercentage - 20, height: Double(cellRowHeight - 20))
+                cell.waveView.frame = waveViewCGRect
+                //print("waveViewCGRect:\(waveViewCGRect)")
+                cell.waveView.backgroundColor = UIColor(red: 6/255, green: 71/255, blue: 244/255, alpha: 1)
+                
+                //cell背景がcontrollerの背景色と同じにする
+                cell.contentView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1)
+                
+                //waveImageの表示
+                cell.waveImage.image = UIImage(named: "wave")
+                let waveImageX = Double(cellWidth) * getWavePercentage - 20
+                let imageCGRect = CGRect(x: waveImageX, y: 10, width: 40, height: Double(cellRowHeight - 20))
+                cell.waveImage.frame = imageCGRect
+                
+                
+                
+                //MARK:返金表示
+                //もう返したかどうか判断して背景色を変わる
+                let appDel = (UIApplication.shared.delegate as! AppDelegate)
+                let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+                let moc = context
+                
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+                //search条件
+                let searchContent = NSPredicate(format: "haveReturned = true")
+                fetchRequest.predicate = searchContent
+                //FetchRequestする
+                do{
+                    //結果をresultsに入れる
+                    let results = try moc.fetch(fetchRequest) as! [PayBack]
+                    //dataArray = results as [NSManagedObject]
+                    
+                    //index記録用
+                    var indexR : Int = 0
+                    
+                    for info in results{
+                        indexR += 1
+                        let returnInfo = dateReturnArray[indexPath.row].value(forKey: "haveReturned") as? Bool
+                        if returnInfo == true {
+                            
+                            cell.leftDaysLabel.text = ""
+                            cell.tillDeadlineLabel.text = "返金した"
+                            cell.tillDeadlineLabel.font = UIFont.systemFont(ofSize: 40)
+                            cell.dayLabel.text = ""
+                            cell.blackView.frame = CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: countDownTableView.rowHeight - 20)
+                            cell.blackView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7)
+                            print("indexR:\(indexR)")
+                            print("\(info.name ?? "何々")さん、haveReturned：\(info.haveReturned)")
+                        }else {
+                            
+                            cell.tillDeadlineLabel.font = UIFont.systemFont(ofSize: 18)
+                            cell.dayLabel.text = "日"
+                            cell.blackView.frame = CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: countDownTableView.rowHeight - 20)
+                            cell.blackView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
+                        }
                         
-                        cell.leftDaysLabel.text = ""
-                        cell.tillDeadlineLabel.text = "返金した"
-                        cell.tillDeadlineLabel.font = UIFont.systemFont(ofSize: 40)
-                        cell.dayLabel.text = ""
-                        cell.blackView.frame = CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: countDownTableView.rowHeight - 20)
-                        cell.blackView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7)
-                        print("indexR:\(indexR)")
-                        print("\(info.name ?? "何々")さん、haveReturned：\(info.haveReturned)")
-                    }else {
                         
-                        cell.tillDeadlineLabel.font = UIFont.systemFont(ofSize: 18)
-                        cell.dayLabel.text = "日"
-                        cell.blackView.frame = CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: countDownTableView.rowHeight - 20)
-                        cell.blackView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0)
                     }
-                    
-                    
+                }catch{
+                    print("request error(CountDownViewController3)")
                 }
-            }catch{
-                print("request error(CountDownViewController3)")
             }
             
         }
         
         
-        
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        countDownTableView.deselectRow(at: indexPath as IndexPath, animated: false)
     }
     
     //cellの高さ
@@ -294,8 +321,208 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
     //MARK:左スワップ
     //cellに削除と通知するボタンを追加
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+
+///////////////////////////////////
+        
+//        if indexPath.row == 2 {
+//            let notification = UITableViewRowAction(style: .normal, title: "通知") { (action, indexPath) in
+//
+//                //alert
+//                let alert = UIAlertController(title: "アラート", message: "Lineメッセージを送りますか？", preferredStyle: UIAlertController.Style.alert)
+//                // OKボタン
+//                let defaultAction: UIAlertAction = UIAlertAction(title: "確定", style: UIAlertAction.Style.default, handler:{
+//                    // ボタンが押された時の処理を書く（クロージャ実装）
+//                    (action: UIAlertAction!) -> Void in
+//                    print("OK")
+//
+//
+//                    //search
+//                    let appDel = (UIApplication.shared.delegate as! AppDelegate)
+//                    let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+//                    let moc = context
+//                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+//                    //search条件
+//                    let searchContent = NSPredicate(format: "name = '\(self.dateReturnArray[indexPath.row].value(forKey: "name") as! String)'","money")
+//                    fetchRequest.predicate = searchContent
+//
+//                    //var sendNameField = ""
+//                    var sendMoneyField = ""
+//                    var sendLeftField = ""
+//                    do{
+//                        let results = try moc.fetch(fetchRequest) as! [PayBack]
+//                        for info in results{
+//                            //let sendName = (info as AnyObject).value(forKey: "name") as! String
+//                            let sendMoney = (info as AnyObject).value(forKey: "money") as! String
+//                            let sendYearReturn = (info as AnyObject).value(forKey: "yearReturn") as! String
+//                            let sendMonthReturn = (info as AnyObject).value(forKey: "monthReturn") as! String
+//                            let sendDayReturn = (info as AnyObject).value(forKey: "dayReturn") as! String
+//                            //                        let sendYearBorrow = (info as AnyObject).value(forKey: "yearBorrow") as! String
+//                            //                        let sendMonthBorrow = (info as AnyObject).value(forKey: "monthBorrow") as! String
+//                            //                        let sendDayBorrow = (info as AnyObject).value(forKey: "dayBorrow") as! String
+//                            //期限まであと何日getする
+//                            let getDaysLeft = self.daysLeft(year: sendYearReturn, month: sendMonthReturn, day: sendDayReturn)
+//
+//                            //print("name = \(sendName)")
+//                            print("money = \(sendMoney)")
+//                            print("getDaysLeft = \(getDaysLeft)")
+//                            //sendNameField = sendName
+//                            sendMoneyField = sendMoney
+//                            sendLeftField = String(getDaysLeft)
+//                            //save
+//                            //try moc.save()
+//
+//                        }
+//                    }catch{
+//                        print("error(left button)")
+//                    }
+//
+//
+//                    self.lineSend(leftDays: sendLeftField,money: sendMoneyField)
+//
+//                })
+//                // キャンセルボタン
+//                let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+//                    // ボタンが押された時の処理を書く（クロージャ実装）
+//                    (action: UIAlertAction!) -> Void in
+//                    print("Cancel")
+//                })
+//
+//                alert.addAction(defaultAction)
+//                alert.addAction(cancelAction)
+//                self.present(alert, animated: true, completion: nil)
+//
+//            }
+//
+//            notification.backgroundColor = UIColor.blue
+//
+//            return [notification]
+//        }else{
+//            let delete = UITableViewRowAction(style: .destructive, title: "削除") { (action, indexPath) in
+//
+//                //alert
+//                let alert = UIAlertController(title: "アラート", message: "本当に削除しますか？", preferredStyle: UIAlertController.Style.alert)
+//                // OKボタン
+//                let defaultAction: UIAlertAction = UIAlertAction(title: "確定", style: UIAlertAction.Style.default, handler:{
+//                    // ボタンが押された時の処理を書く（クロージャ実装）
+//                    (action: UIAlertAction!) -> Void in
+//                    print("OK")
+//
+//                    //ManagedObject Contextを取り出す
+//                    let appDel = (UIApplication.shared.delegate as! AppDelegate)
+//                    let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+//                    let moc = context
+//                    //選択されたcellのデータを削除
+//                    //moc.deletedObjects(dataArray[indexPath.row])
+//
+//                    //MARK:別のviewControllerの変数を使う
+//                    //                //RecordViewのdataArray[]変数をとる
+//                    //                let getRecordView = RecordViewController()
+//                    //                let getRecordViewDataArray = getRecordView.dataArray
+//                    //
+//                    moc.delete(dataArray[indexPath.row])
+//
+//                    //save
+//                    do{
+//                        try moc.save()
+//                    }catch{
+//                        print("save error(delete)")
+//                    }
+//                    //recordArray 再び読み込み
+//                    self.getData()
+//                    //tableview reload 更新する
+//                    self.countDownTableView.reloadData()
+//
+//                })
+//                // キャンセルボタン
+//                let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+//                    // ボタンが押された時の処理を書く（クロージャ実装）
+//                    (action: UIAlertAction!) -> Void in
+//                    print("Cancel")
+//                })
+//
+//                alert.addAction(defaultAction)
+//                alert.addAction(cancelAction)
+//                self.present(alert, animated: true, completion: nil)
+//
+//            }
+//
+//            let notification = UITableViewRowAction(style: .normal, title: "通知") { (action, indexPath) in
+//
+//                //alert
+//                let alert = UIAlertController(title: "アラート", message: "Lineメッセージを送りますか？", preferredStyle: UIAlertController.Style.alert)
+//                // OKボタン
+//                let defaultAction: UIAlertAction = UIAlertAction(title: "確定", style: UIAlertAction.Style.default, handler:{
+//                    // ボタンが押された時の処理を書く（クロージャ実装）
+//                    (action: UIAlertAction!) -> Void in
+//                    print("OK")
+//
+//
+//                    //search
+//                    let appDel = (UIApplication.shared.delegate as! AppDelegate)
+//                    let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+//                    let moc = context
+//                    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PayBack")
+//                    //search条件
+//                    let searchContent = NSPredicate(format: "name = '\(self.dateReturnArray[indexPath.row].value(forKey: "name") as! String)'","money")
+//                    fetchRequest.predicate = searchContent
+//
+//                    //var sendNameField = ""
+//                    var sendMoneyField = ""
+//                    var sendLeftField = ""
+//                    do{
+//                        let results = try moc.fetch(fetchRequest) as! [PayBack]
+//                        for info in results{
+//                            //let sendName = (info as AnyObject).value(forKey: "name") as! String
+//                            let sendMoney = (info as AnyObject).value(forKey: "money") as! String
+//                            let sendYearReturn = (info as AnyObject).value(forKey: "yearReturn") as! String
+//                            let sendMonthReturn = (info as AnyObject).value(forKey: "monthReturn") as! String
+//                            let sendDayReturn = (info as AnyObject).value(forKey: "dayReturn") as! String
+//                            //                        let sendYearBorrow = (info as AnyObject).value(forKey: "yearBorrow") as! String
+//                            //                        let sendMonthBorrow = (info as AnyObject).value(forKey: "monthBorrow") as! String
+//                            //                        let sendDayBorrow = (info as AnyObject).value(forKey: "dayBorrow") as! String
+//                            //期限まであと何日getする
+//                            let getDaysLeft = self.daysLeft(year: sendYearReturn, month: sendMonthReturn, day: sendDayReturn)
+//
+//                            //print("name = \(sendName)")
+//                            print("money = \(sendMoney)")
+//                            print("getDaysLeft = \(getDaysLeft)")
+//                            //sendNameField = sendName
+//                            sendMoneyField = sendMoney
+//                            sendLeftField = String(getDaysLeft)
+//                            //save
+//                            //try moc.save()
+//
+//                        }
+//                    }catch{
+//                        print("error(left button)")
+//                    }
+//
+//
+//                    self.lineSend(leftDays: sendLeftField,money: sendMoneyField)
+//
+//                })
+//                // キャンセルボタン
+//                let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+//                    // ボタンが押された時の処理を書く（クロージャ実装）
+//                    (action: UIAlertAction!) -> Void in
+//                    print("Cancel")
+//                })
+//
+//                alert.addAction(defaultAction)
+//                alert.addAction(cancelAction)
+//                self.present(alert, animated: true, completion: nil)
+//
+//            }
+//
+//            notification.backgroundColor = UIColor.blue
+//
+//            return [delete, notification]
+//        }
+        
+///////////////////////
         let delete = UITableViewRowAction(style: .destructive, title: "削除") { (action, indexPath) in
-            
+
             //alert
             let alert = UIAlertController(title: "アラート", message: "本当に削除しますか？", preferredStyle: UIAlertController.Style.alert)
             // OKボタン
@@ -303,21 +530,21 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 // ボタンが押された時の処理を書く（クロージャ実装）
                 (action: UIAlertAction!) -> Void in
                 print("OK")
-                
+
                 //ManagedObject Contextを取り出す
                 let appDel = (UIApplication.shared.delegate as! AppDelegate)
                 let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
                 let moc = context
                 //選択されたcellのデータを削除
                 //moc.deletedObjects(dataArray[indexPath.row])
-                
+
                 //MARK:別のviewControllerの変数を使う
 //                //RecordViewのdataArray[]変数をとる
 //                let getRecordView = RecordViewController()
 //                let getRecordViewDataArray = getRecordView.dataArray
 //
                 moc.delete(dataArray[indexPath.row])
-                
+
                 //save
                 do{
                     try moc.save()
@@ -328,7 +555,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 self.getData()
                 //tableview reload 更新する
                 self.countDownTableView.reloadData()
-                
+
             })
             // キャンセルボタン
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
@@ -336,15 +563,15 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 (action: UIAlertAction!) -> Void in
                 print("Cancel")
             })
-            
+
             alert.addAction(defaultAction)
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
-            
+
         }
-        
+
         let notification = UITableViewRowAction(style: .normal, title: "通知") { (action, indexPath) in
-            
+
             //alert
             let alert = UIAlertController(title: "アラート", message: "Lineメッセージを送りますか？", preferredStyle: UIAlertController.Style.alert)
             // OKボタン
@@ -352,8 +579,8 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 // ボタンが押された時の処理を書く（クロージャ実装）
                 (action: UIAlertAction!) -> Void in
                 print("OK")
-                
-                
+
+
                 //search
                 let appDel = (UIApplication.shared.delegate as! AppDelegate)
                 let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
@@ -362,7 +589,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 //search条件
                 let searchContent = NSPredicate(format: "name = '\(self.dateReturnArray[indexPath.row].value(forKey: "name") as! String)'","money")
                 fetchRequest.predicate = searchContent
-                
+
                 //var sendNameField = ""
                 var sendMoneyField = ""
                 var sendLeftField = ""
@@ -379,7 +606,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                         //                        let sendDayBorrow = (info as AnyObject).value(forKey: "dayBorrow") as! String
                         //期限まであと何日getする
                         let getDaysLeft = self.daysLeft(year: sendYearReturn, month: sendMonthReturn, day: sendDayReturn)
-                        
+
                         //print("name = \(sendName)")
                         print("money = \(sendMoney)")
                         print("getDaysLeft = \(getDaysLeft)")
@@ -393,10 +620,10 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 }catch{
                     print("error(left button)")
                 }
-                
-                
+
+
                 self.lineSend(leftDays: sendLeftField,money: sendMoneyField)
-                
+
             })
             // キャンセルボタン
             let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
@@ -404,17 +631,19 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 (action: UIAlertAction!) -> Void in
                 print("Cancel")
             })
-            
+
             alert.addAction(defaultAction)
             alert.addAction(cancelAction)
             self.present(alert, animated: true, completion: nil)
-            
+
         }
-        
+
         notification.backgroundColor = UIColor.blue
-        
+
         return [delete, notification]
     }
+    
+    
     
     //MARK:右スワップ
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -470,6 +699,9 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                 print("haveReturned = \((info as AnyObject).value(forKey: "haveReturned") as! Bool)")
                 //(info as AnyObject).value(forKey: "haveReturned")
                 info.haveReturned = true
+                
+                //MARK:TEST OF INDEX SAVE
+                haveReturnIndexArray.append(index)
                 
                 //save
                 try moc.save()

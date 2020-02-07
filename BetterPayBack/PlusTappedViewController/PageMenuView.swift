@@ -102,12 +102,13 @@ extension PageMenuView: UIScrollViewDelegate {
     fileprivate func setupMenuScrollView() {
         menuScrollView = UIScrollView()
         menuScrollView.backgroundColor = option.menuItemBackgroundColorNormal
+        //menuScrollView.backgroundColor = .red
         menuScrollView.delegate = self
         menuScrollView.isPagingEnabled = false
         menuScrollView.showsHorizontalScrollIndicator = false
         let x = CGRect(x: 0, y: foundationView.frame.height*0.9,
                        width: foundationView.frame.width,
-                       height: foundationView.frame.height-foundationView.frame.height*0.6)
+                       height: foundationView.frame.height-foundationView.frame.height*0.4)
         menuScrollView.frame = x
         
         print("scrollView:\(x)")
@@ -142,7 +143,7 @@ extension PageMenuView: UIScrollViewDelegate {
             
             // Resize Menu item based on option
             let buttonWidth = getMenuButtonWidth(button: menuButton)
-            let d = CGRect(x: menuX, y: foundationView.frame.height*0.3,
+            let d = CGRect(x: menuX, y: foundationView.frame.height*0.4,
                            width: buttonWidth,
                            height: 50)
             menuButton.frame = d

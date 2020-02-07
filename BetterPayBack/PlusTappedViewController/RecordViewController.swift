@@ -48,6 +48,8 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         recordTableView.dataSource = self
         recordTableView.delegate = self
         
+        recordSearchBar.delegate = self
+        
         //MARK:fake plus button
         barImage.frame = CGRect(x: -3, y: view.frame.height - 128, width: view.frame.width + 5, height: 128)
         //plusボタン設定
@@ -201,57 +203,62 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
-    
-    //MARK: cellの削除
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        let delete = UITableViewRowAction(style: .destructive, title: "削除") { (action, indexPath) in
-            
-            //alert
-            let alert = UIAlertController(title: "アラート", message: "本当に削除しますか？", preferredStyle: UIAlertController.Style.alert)
-            // OKボタン
-            let defaultAction: UIAlertAction = UIAlertAction(title: "確定", style: UIAlertAction.Style.default, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("OK")
-                
-                //ManagedObject Contextを取り出す
-                let appDel = (UIApplication.shared.delegate as! AppDelegate)
-                let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
-                let moc = context
-                //選択されたcellのデータを削除
-                //moc.deletedObjects(dataArray[indexPath.row])
-                moc.delete(dataArray[indexPath.row])
-                //save
-                do{
-                    try moc.save()
-                }catch{
-                    print("save error(delete)")
-                }
-                //recordArray 再び読み込み
-                self.getData()
-                //tableview reload 更新する
-                self.recordTableView.reloadData()
-                
-            })
-            // キャンセルボタン
-            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("Cancel")
-            })
-            
-            alert.addAction(defaultAction)
-            alert.addAction(cancelAction)
-            self.present(alert, animated: true, completion: nil)
-            
-        }
-        
-        return [delete]
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        recordTableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
     
+ //////////////////////////////
+//    //MARK: cellの削除
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//        
+//        let delete = UITableViewRowAction(style: .destructive, title: "削除") { (action, indexPath) in
+//            
+//            //alert
+//            let alert = UIAlertController(title: "アラート", message: "本当に削除しますか？", preferredStyle: UIAlertController.Style.alert)
+//            // OKボタン
+//            let defaultAction: UIAlertAction = UIAlertAction(title: "確定", style: UIAlertAction.Style.default, handler:{
+//                // ボタンが押された時の処理を書く（クロージャ実装）
+//                (action: UIAlertAction!) -> Void in
+//                print("OK")
+//                
+//                //ManagedObject Contextを取り出す
+//                let appDel = (UIApplication.shared.delegate as! AppDelegate)
+//                let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+//                let moc = context
+//                //選択されたcellのデータを削除
+//                //moc.deletedObjects(dataArray[indexPath.row])
+//                moc.delete(dataArray[indexPath.row])
+//                //save
+//                do{
+//                    try moc.save()
+//                }catch{
+//                    print("save error(delete)")
+//                }
+//                //recordArray 再び読み込み
+//                self.getData()
+//                //tableview reload 更新する
+//                self.recordTableView.reloadData()
+//                
+//            })
+//            // キャンセルボタン
+//            let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertAction.Style.cancel, handler:{
+//                // ボタンが押された時の処理を書く（クロージャ実装）
+//                (action: UIAlertAction!) -> Void in
+//                print("Cancel")
+//            })
+//            
+//            alert.addAction(defaultAction)
+//            alert.addAction(cancelAction)
+//            self.present(alert, animated: true, completion: nil)
+//            
+//        }
+//        
+//        return [delete]
+//        
+//    }
+//    
+/////////////////////////
     
     //MARK: searchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
