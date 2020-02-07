@@ -91,19 +91,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         
         setCalendar()
         
-        totalMoneyLabel.layer.frame = CGRect(x: 0, y: view.frame.height * 0.57, width: view.frame.width, height: 40)
-        totalMoneyLabel.text = "今まで貸した総金額："
-        totalMoneyLabel.textColor = .white
-        totalMoneyLabel.font = UIFont.systemFont(ofSize: 27)
-        totalMoneyLabel.textAlignment = .center
-        view.addSubview(totalMoneyLabel)
         
-        totalMoneyLabel2.layer.frame = CGRect(x: 0, y: view.frame.height * 0.62, width: view.frame.width, height: 40)
-        totalMoneyLabel2.text = "¥\(sumOfMoney)"
-        totalMoneyLabel2.textColor = .white
-        totalMoneyLabel2.font = UIFont.systemFont(ofSize: 55)
-        totalMoneyLabel2.textAlignment = .center
-        view.addSubview(totalMoneyLabel2)
         
     }
     
@@ -118,16 +106,20 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         let getCountDownViewControllerFunction = CountDownViewController()
         getCountDownViewControllerFunction.getHaveReturnedData()
         
-        //        sumOfHaventReturnedMoney = sumOfMoney - haveReturndTotalMoney
-        
-        
-        //MARK:別のviewControllerの変数を使う
-//        //RecordViewのsumOfHaventReturnedMoney変数をとる
-//        let getRecordView = RecordViewController()
-//        let getRecordViewsumOfHaventReturnedMoney = getRecordView.sumOfHaventReturnedMoney
-//
-        
         totalLentLabel.text = "¥\(sumOfHaventReturnedMoney)"
+        totalMoneyLabel.layer.frame = CGRect(x: 0, y: view.frame.height * 0.57, width: view.frame.width, height: 40)
+        totalMoneyLabel.text = "今まで貸した総金額："
+        totalMoneyLabel.textColor = .white
+        totalMoneyLabel.font = UIFont.systemFont(ofSize: 27)
+        totalMoneyLabel.textAlignment = .center
+        view.addSubview(totalMoneyLabel)
+        
+        totalMoneyLabel2.layer.frame = CGRect(x: 0, y: view.frame.height * 0.62, width: view.frame.width, height: 40)
+        totalMoneyLabel2.text = "¥\(sumOfMoney)"
+        totalMoneyLabel2.textColor = .white
+        totalMoneyLabel2.font = UIFont.systemFont(ofSize: 55)
+        totalMoneyLabel2.textAlignment = .center
+        view.addSubview(totalMoneyLabel2)
         
         //最初表示位置
         mainDateCollectionView.scrollToItem(at: IndexPath(row:currentDay-3,section:0), at: .left, animated: false)
