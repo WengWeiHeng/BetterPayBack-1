@@ -10,8 +10,15 @@ import UIKit
 import CoreData
 import Firebase
 
+
+
 class AddDataViewController: UIViewController,UITextFieldDelegate {
     
+    //userTotalMoney保存する配列
+    //var userTotalMoneyArray = [NSManagedObject]()
+    var userTotalMoneyArrayInt : [Int] = []
+    
+    var sumOfUserTotalMoneyArrayInt : Int = 0
     
     @IBOutlet weak var nameField: UITextField!
     
@@ -154,6 +161,17 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
             
             newPerson.setValue(nowUserPassword, forKey: "password")
             
+            let m : String = moneyField.text!
+            let mInt = Int(m)!
+            userTotalMoneyArrayInt.append(mInt)
+            //reduceでmoneyInteger配列の合計を求める
+            sumOfUserTotalMoneyArrayInt = userTotalMoneyArrayInt.reduce(0) {(num1: Int, num2: Int) -> Int in
+                return num1 + num2
+            }
+            
+            //getUserTotalMoneyData(uN: nowUserName)
+            
+            
             //save
             do{
                 try moc.save()
@@ -174,6 +192,31 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
         
         
         
+    }
+    
+    //MARK:userTotalMoney
+    func getUserTotalMoneyData(uN:String){
+        let appDel = (UIApplication.shared.delegate as! AppDelegate)
+        let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+        let moc = context
+
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PassWord")
+        //search条件
+        let searchContent = NSPredicate(format: "userName = '\(uN)'")
+        fetchRequest.predicate = searchContent
+
+        do{
+            //結果をresultsに入れる
+            let results = try moc.fetch(fetchRequest) as! [PassWord]
+            //userTotalMoneyArray = results as [NSManagedObject]
+            for info in results{
+                info.userTotalMoney = Int32(sumOfUserTotalMoneyArrayInt)
+                //userTotalMoneyArray[0].value(forKey: "userTotalMoney") as! Int32
+            }
+
+        }catch{
+            print("get userTotalMoney error(AddDataViewController)")
+        }
     }
     
     //userName記録

@@ -73,11 +73,14 @@ class RegisterViewController: UIViewController,UITextFieldDelegate {
         newPassword.setValue(us, forKey: "userName")
         newPassword.setValue(pw, forKey: "password")
         
+        let newTotalMoney = 0
+        newPassword.setValue(newTotalMoney, forKey: "userTotalMoney")
+        
         
         
         //save
         do{
-            print("us:\(us),pw:\(pw)")
+            print("us:\(us),pw:\(pw),newTotalMoney:\(newTotalMoney)")
             try moc.save()
             
         }catch{

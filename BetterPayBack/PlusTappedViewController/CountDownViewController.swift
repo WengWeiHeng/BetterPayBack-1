@@ -299,6 +299,7 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
                             cell.tillDeadlineLabel.text = "返金した"
                             cell.tillDeadlineLabel.font = UIFont.systemFont(ofSize: 40)
                             cell.dayLabel.text = ""
+                            cell.blackView.isHidden = false
                             cell.blackView.frame = CGRect(x: 10, y: 10, width: self.view.frame.width - 20, height: countDownTableView.rowHeight - 20)
                             cell.blackView.backgroundColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.7)
                             print("indexR:\(indexR)")

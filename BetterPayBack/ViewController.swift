@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Firebase
 
 class ViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate {
     
@@ -16,6 +17,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     
     var totalMoneyLabel = UILabel()
     var totalMoneyLabel2 = UILabel()
+    var userTotalMoney:Int = 0
     
     @IBOutlet weak var mainDateCollectionView: UICollectionView!
     
@@ -106,25 +108,71 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
         let getCountDownViewControllerFunction = CountDownViewController()
         getCountDownViewControllerFunction.getHaveReturnedData()
         
+        //getNowUserTotalMoneyInt()
+        
         totalLentLabel.text = "¥\(sumOfHaventReturnedMoney)"
         totalMoneyLabel.layer.frame = CGRect(x: 0, y: view.frame.height * 0.57, width: view.frame.width, height: 40)
         totalMoneyLabel.text = "今まで貸した総金額："
         totalMoneyLabel.textColor = .white
         totalMoneyLabel.font = UIFont.systemFont(ofSize: 27)
         totalMoneyLabel.textAlignment = .center
-        view.addSubview(totalMoneyLabel)
+        //view.addSubview(totalMoneyLabel)
         
         totalMoneyLabel2.layer.frame = CGRect(x: 0, y: view.frame.height * 0.62, width: view.frame.width, height: 40)
-        totalMoneyLabel2.text = "¥\(sumOfMoney)"
+        totalMoneyLabel2.text = "¥\(userTotalMoney)"
         totalMoneyLabel2.textColor = .white
         totalMoneyLabel2.font = UIFont.systemFont(ofSize: 55)
         totalMoneyLabel2.textAlignment = .center
-        view.addSubview(totalMoneyLabel2)
+        //view.addSubview(totalMoneyLabel2)
         
         //最初表示位置
         mainDateCollectionView.scrollToItem(at: IndexPath(row:currentDay-3,section:0), at: .left, animated: false)
         
     }
+    
+    //userNameをゲットする
+    func getUserName() -> String{
+        var userName = ""
+        if let user = Auth.auth().currentUser {
+            userName = String(user.displayName ?? "none")
+        }
+        print("nowUserDataId:\(userName)")
+        return userName
+    }
+    //MARK: getData
+    func getNowUserTotalMoneyInt(){
+        let appDel = (UIApplication.shared.delegate as! AppDelegate)
+        let context:NSManagedObjectContext = appDel.persistentContainer.viewContext
+        let moc = context
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PassWord")
+        //search条件
+        let nowUserDataID = getUserName()
+        let searchContent = NSPredicate(format: "userName = '\(nowUserDataID)'","userTotalMoney")
+        fetchRequest.predicate = searchContent
+        //FetchRequestする
+        do{
+            //結果をresultsに入れる
+            let results = try moc.fetch(fetchRequest) as! [PassWord]
+            var userTotalMoneyArray = [NSManagedObject]()
+            for m in results{
+                if m.userTotalMoney == nil {
+                    userTotalMoney = 0
+                }else{
+                    //userTotalMoney = Int(userTotalMoneyArray[0].value(forKey: "userTotalMoney") as! Int32)
+                    userTotalMoney = Int(m.userTotalMoney)
+                }
+            }
+            
+//            for u in results{
+//                userTotalMoney = Int(u.userTotalMoney)
+//            }
+            
+        }catch{
+            print("request error")
+        }
+    }
+    
     
     
 //    @IBAction func lastMonth(_ sender: Any) {

@@ -3,6 +3,7 @@
     <entity name="PassWord" representedClassName="PassWord" syncable="YES" codeGenerationType="class">
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userTotalMoney" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="PayBack" representedClassName="PayBack" syncable="YES" codeGenerationType="class">
         <attribute name="dataID" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,7 +25,7 @@
         <attribute name="yearReturn" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="PassWord" positionX="-63" positionY="99" width="128" height="75"/>
+        <element name="PassWord" positionX="-63" positionY="99" width="128" height="90"/>
         <element name="PayBack" positionX="-63" positionY="-18" width="128" height="300"/>
     </elements>
 </model>
