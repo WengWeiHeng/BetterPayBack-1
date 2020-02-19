@@ -19,6 +19,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     var totalMoneyLabel2 = UILabel()
     var userTotalMoney:Int = 0
     
+    @IBOutlet weak var middleView: UIView!
     @IBOutlet weak var mainDateCollectionView: UICollectionView!
     
     @IBOutlet weak var middleRetangle: UIView!
@@ -30,6 +31,7 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     //    @IBOutlet weak var profileButton: UIButton!
     //
     
+    @IBOutlet weak var totalText: UILabel!
     @IBOutlet weak var totalLentLabel: UILabel!
     
     //    var haventReturnMoney: Int = 0
@@ -77,6 +79,15 @@ class ViewController: UIViewController,UICollectionViewDataSource,UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        //MARK:sizeChange
+        let width = view.frame.width
+        let height = view.frame.height
+        mainDateCollectionView.frame = CGRect(x: 0, y: 40, width: width, height: 80)
+        middleView.frame = CGRect(x: width*0.5 - 125, y: height*0.3, width: 250, height: 250)
+        monthLabel.frame = CGRect(x: width*0.5 - 207, y: height*0.2, width: 414, height: 40)
+        totalText.frame = CGRect(x: width*0.5 - 207, y: height*0.6, width: 414, height: 60)
+        totalLentLabel.frame = CGRect(x: width*0.5 - 207, y: height*0.65, width: 414, height: 80)
         
         dateLabel.layer.borderColor  = UIColor(red: 33/255, green: 33/255, blue: 33/255, alpha: 1.0).cgColor
         dateLabel.layer.borderWidth = 0

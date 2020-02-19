@@ -27,23 +27,67 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //ipad (9.7) 768 1024
+        //MARK:sizeChange
+        let width = view.frame.width
+        //let height = view.frame.height
+        if width > 414 {
+            self.tabBar.frame = CGRect(x: 0, y: 924, width: 768, height: 100)
+            self.tabBar.tintColor = UIColor.black
+            self.tabBar.backgroundImage = UIImage(named: "homeIndicator3")
+            //self.tabBar.backgroundImage = UIImage()
+            self.tabBar.shadowImage = UIImage()
+            
+            self.tabBar.barTintColor = .clear
+            
+            //self.tabBar.items![0].image = UIImage(named: "home2")
+            //self.tabBar.items![1].image = UIImage(named: "user")
+            
+            //self.tabBarItem.imageInsets = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+            
+            //cover用View
+            let lineView = UIView()
+            lineView.frame = CGRect(x: 0, y: view.frame.height * 0.878, width: view.frame.width, height: 2)
+            lineView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1)
+            //lineView.backgroundColor = UIColor.red
+            self.view.addSubview(lineView)
+            //self.view.sendSubviewToBack(lineView)
+            
+            
+        }else{
+            self.tabBar.tintColor = UIColor.black
+            self.tabBar.backgroundImage = UIImage(named: "homeIndicator2")
+            //self.tabBar.backgroundImage = UIImage()
+            self.tabBar.shadowImage = UIImage()
+            
+            self.tabBar.barTintColor = .clear
+            
+            //cover用View
+            let lineView = UIView()
+            lineView.frame = CGRect(x: 0, y: view.frame.height * 0.853, width: view.frame.width, height: 2)
+            lineView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1)
+            //lineView.backgroundColor = UIColor.red
+            self.view.addSubview(lineView)
+            //self.view.sendSubviewToBack(lineView)
+        }
         
-        self.tabBar.tintColor = UIColor.black
-        self.tabBar.backgroundImage = UIImage(named: "homeIndicator2")
-        //self.tabBar.backgroundImage = UIImage()
-        self.tabBar.shadowImage = UIImage()
         
-        self.tabBar.barTintColor = .clear
+//        self.tabBar.tintColor = UIColor.black
+//        self.tabBar.backgroundImage = UIImage(named: "homeIndicator2")
+//        //self.tabBar.backgroundImage = UIImage()
+//        self.tabBar.shadowImage = UIImage()
+//
+//        self.tabBar.barTintColor = .clear
         
         
         
-        //cover用View
-        let lineView = UIView()
-        lineView.frame = CGRect(x: 0, y: view.frame.height * 0.853, width: view.frame.width, height: 2)
-        lineView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1)
-        //lineView.backgroundColor = UIColor.red
-        self.view.addSubview(lineView)
-        //self.view.sendSubviewToBack(lineView)
+//        //cover用View
+//        let lineView = UIView()
+//        lineView.frame = CGRect(x: 0, y: view.frame.height * 0.853, width: view.frame.width, height: 2)
+//        lineView.backgroundColor = UIColor(red: 240/255, green: 135/255, blue: 98/255, alpha: 1)
+//        //lineView.backgroundColor = UIColor.red
+//        self.view.addSubview(lineView)
+//        //self.view.sendSubviewToBack(lineView)
         
         
         //plusボタン設定
@@ -53,9 +97,18 @@ class TabBarController: UITabBarController {
         self.view.insertSubview(button, aboveSubview: self.tabBar)
         self.view.bringSubviewToFront(button)
         
-        set2()
+        //set2()
         print("")
         
+        
+        
+//        var insets = UIEdgeInsets()
+//        insets.top = 5
+//        insets.bottom = 10
+//        self.tabBarItem.imageInsets = insets
+        //self.navigationController?.tabBarItem.imageInsets = insets
+ 
+
         
         
     }
@@ -79,7 +132,7 @@ class TabBarController: UITabBarController {
         vc2.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "user"), tag: 1)
         let vc3 = countDownViewController
         vc3.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "005-clock"), tag: 2)
-        
+
         let vcs: [UIViewController] = [vc1, vc2]
         self.setViewControllers(vcs, animated: true)
         

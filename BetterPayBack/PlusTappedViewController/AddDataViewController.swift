@@ -20,8 +20,28 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
     
     var sumOfUserTotalMoneyArrayInt : Int = 0
     
-    @IBOutlet weak var nameField: UITextField!
     
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var borrowLabel: UILabel!
+    @IBOutlet weak var moneyLabel: UILabel!
+    @IBOutlet weak var returnLabel: UILabel!
+    @IBOutlet weak var reasonLabel: UILabel!
+    
+    
+    @IBOutlet weak var yearB: UIImageView!
+    @IBOutlet weak var monthB: UIImageView!
+    @IBOutlet weak var dayB: UIImageView!
+    @IBOutlet weak var hourB: UIImageView!
+    @IBOutlet weak var minuteB: UIImageView!
+    
+    
+    @IBOutlet weak var yearR: UIImageView!
+    @IBOutlet weak var monthR: UIImageView!
+    @IBOutlet weak var dayR: UIImageView!
+    @IBOutlet weak var hourR: UIImageView!
+    @IBOutlet weak var monuteR: UIImageView!
+    
+    @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var nameFieldImg: UIImageView!
     @IBOutlet weak var moneyField: UITextField!
     @IBOutlet weak var moneyFieldImg: UIImageView!
@@ -62,6 +82,61 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        //MARK:sizeChange
+        let width = view.frame.width
+        let height = view.frame.height
+        nameLabel.frame = CGRect(x: width*0.2 - 20, y: height*0.24 - 12, width: 41, height: 24)
+        nameFieldImg.frame = CGRect(x: width*0.5 - width*0.39, y: height*0.29 - height*0.025, width: width*0.78, height: height*0.05)//324 48
+        nameField.frame = CGRect(x: width*0.5 - width*0.32, y: height*0.29 - height*0.025, width: width*0.67, height: height*0.05)//280 48
+        nameKome.frame = CGRect(x: width*0.93 - 15, y: height*0.29 - 17, width: 31, height: 34)//31 34
+        
+        borrowLabel.frame = CGRect(x: width*0.2 - 20, y: height*0.35 - 12, width: 82, height: 24)
+        yearBorrowImg.frame = CGRect(x: width*0.11, y: height*0.39 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        yearBorrow.frame = CGRect(x: width*0.15, y: height*0.39 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        yearB.frame = CGRect(x: width*0.26 , y: height*0.39 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        monthBorrowImg.frame = CGRect(x: width*0.38, y: height*0.39 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        monthBorrow.frame = CGRect(x: width*0.42, y: height*0.39 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        monthB.frame = CGRect(x: width*0.53 , y: height*0.39 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        dayBorrowImg.frame = CGRect(x: width*0.65, y: height*0.39 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        dayBorrow.frame = CGRect(x: width*0.69, y: height*0.39 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        dayB.frame = CGRect(x: width*0.80 , y: height*0.39 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        hourBorrowImg.frame = CGRect(x: width*0.11, y: height*0.455 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        hourBorrow.frame = CGRect(x: width*0.15, y: height*0.455 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        hourB.frame = CGRect(x: width*0.26 , y: height*0.455 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        minuteBorrowImg.frame = CGRect(x: width*0.38, y: height*0.455 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        minuteBorrow.frame = CGRect(x: width*0.42, y: height*0.455 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        minuteB.frame = CGRect(x: width*0.53 , y: height*0.455 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        borrowKome.frame = CGRect(x: width*0.93 - 15, y: height*0.39 - 17, width: 31, height: 34)//31 34
+        moneyLabel.frame = CGRect(x: width*0.2 - 20, y: height*0.5 - 12, width: 41, height: 24)
+        moneyFieldImg.frame = CGRect(x: width*0.5 - width*0.39, y: height*0.55 - height*0.025, width: width*0.78, height: height*0.05)//324 48
+        moneyField.frame = CGRect(x: width*0.5 - width*0.32, y: height*0.55 - height*0.025, width: width*0.67, height: height*0.05)//280 48
+        moneyKome.frame = CGRect(x: width*0.93 - 15, y: height*0.55 - 17, width: 31, height: 34)//31 34
+        returnLabel.frame = CGRect(x: width*0.2 - 20, y: height*0.615 - 12, width: 82, height: 24)
+        yearReturnImg.frame = CGRect(x: width*0.11, y: height*0.655 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        yearReturn.frame = CGRect(x: width*0.15, y: height*0.655 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        yearR.frame = CGRect(x: width*0.26 , y: height*0.655 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        monthReturnImg.frame = CGRect(x: width*0.38, y: height*0.655 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        monthReturn.frame = CGRect(x: width*0.42, y: height*0.655 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        monthR.frame = CGRect(x: width*0.53 , y: height*0.655 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        dayReturnImg.frame = CGRect(x: width*0.65, y: height*0.655 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        dayReturn.frame = CGRect(x: width*0.69, y: height*0.655 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        dayR.frame = CGRect(x: width*0.80 , y: height*0.655 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        hourReturnImg.frame = CGRect(x: width*0.11, y: height*0.72 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        hourReturn.frame = CGRect(x: width*0.15, y: height*0.72 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        hourR.frame = CGRect(x: width*0.26 , y: height*0.72 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        minuteReturnImg.frame = CGRect(x: width*0.38, y: height*0.72 - height*0.02, width: width*0.21, height: height*0.04)//90 35
+        minuteReturn.frame = CGRect(x: width*0.42, y: height*0.72 - height*0.02, width: width*0.18, height: height*0.04)//75 35
+        monuteR.frame = CGRect(x: width*0.53 , y: height*0.72 - height*0.02, width: width*0.09, height: height*0.04)//38 38
+        reasonLabel.frame = CGRect(x: width*0.2 - 20, y: height*0.77 - 12, width: 41, height: 24)
+        reasonImg.frame = CGRect(x: width*0.5 - width*0.39, y: height*0.81 - height*0.025, width: width*0.78, height: height*0.05)//324 48
+        reasonField.frame = CGRect(x: width*0.5 - width*0.32, y: height*0.81 - height*0.025, width: width*0.67, height: height*0.05)//280 48
+        
+        returnButton.frame = CGRect(x: width*0.5 - width*0.35, y: height*0.9 - height*0.025, width: 130, height: 64)//130 64
+        checkButton.frame = CGRect(x: width*0.5 + width*0.18, y: height*0.9 - height*0.025, width: 130, height: 64)//130 64
+        
+        
+        
         returnButton.layer.cornerRadius = 30.0
         returnButton.layer.backgroundColor = UIColor(red: 252/255, green: 238/255, blue: 33/255, alpha: 1.0).cgColor
         returnButton.layer.cornerRadius = 25

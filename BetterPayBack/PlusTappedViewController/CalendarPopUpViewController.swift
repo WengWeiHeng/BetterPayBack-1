@@ -48,36 +48,95 @@ class CalendarPopUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         let w = viewOfCell.frame.width
-        let h = viewOfCell.frame.width
+        let h = viewOfCell.frame.height
         
-        name.frame = CGRect(x: w * 0.1, y: h * 0.1, width: w * 0.7, height: h * 0.3)
-        name.text = "\(nameOfRedDot)"
-        name.textColor = .black
-        name.font = UIFont.systemFont(ofSize: 35)
-        viewOfCell.addSubview(name)
+        if w > 414{
+            name.frame = CGRect(x: w * 0.1, y: h * 0.1, width: w * 0.7, height: h * 0.3)
+            name.text = "\(nameOfRedDot)"
+            name.textColor = .black
+            name.font = UIFont.systemFont(ofSize: 35)
+            viewOfCell.addSubview(name)
+            
+            money.frame = CGRect(x: w * 0.1, y: h * 0.35, width: w * 0.7, height: h * 0.3)
+            money.text = "金額："
+            money.textColor = .black
+            money.font = UIFont.systemFont(ofSize: 23)
+            viewOfCell.addSubview(money)
+            moneyTitle.frame = CGRect(x: w * 0.1, y: h * 0.45, width: w * 0.7, height: h * 0.3)
+            moneyTitle.text = "\(moneyOfRedDot)"
+            moneyTitle.textColor = .black
+            moneyTitle.font = UIFont.systemFont(ofSize: 25)
+            viewOfCell.addSubview(moneyTitle)
+            
+            dateReturn.frame = CGRect(x: w * 0.1, y: h * 0.6, width: w * 0.7, height: h * 0.3)
+            dateReturn.text = "期限："
+            dateReturn.textColor = .black
+            dateReturn.font = UIFont.systemFont(ofSize: 23)
+            viewOfCell.addSubview(dateReturn)
+            dateReturnTitle.frame = CGRect(x: w * 0.1, y: h * 0.7, width: w * 0.7, height: h * 0.3)
+            dateReturnTitle.text = "\(dateOfRedDot)"
+            dateReturnTitle.textColor = .black
+            dateReturnTitle.font = UIFont.systemFont(ofSize: 25)
+            viewOfCell.addSubview(dateReturnTitle)
+        }else{
+            name.frame = CGRect(x: w * 0.1, y: h * 0.1, width: w * 0.7, height: h * 0.3)
+            name.text = "\(nameOfRedDot)"
+            name.textColor = .black
+            name.font = UIFont.systemFont(ofSize: 35)
+            viewOfCell.addSubview(name)
+            
+            money.frame = CGRect(x: w * 0.1, y: h * 0.35, width: w * 0.7, height: h * 0.3)
+            money.text = "金額："
+            money.textColor = .black
+            money.font = UIFont.systemFont(ofSize: 23)
+            viewOfCell.addSubview(money)
+            moneyTitle.frame = CGRect(x: w * 0.1, y: h * 0.45, width: w * 0.7, height: h * 0.3)
+            moneyTitle.text = "\(moneyOfRedDot)"
+            moneyTitle.textColor = .black
+            moneyTitle.font = UIFont.systemFont(ofSize: 25)
+            viewOfCell.addSubview(moneyTitle)
+            
+            dateReturn.frame = CGRect(x: w * 0.1, y: h * 0.6, width: w * 0.7, height: h * 0.3)
+            dateReturn.text = "期限："
+            dateReturn.textColor = .black
+            dateReturn.font = UIFont.systemFont(ofSize: 23)
+            viewOfCell.addSubview(dateReturn)
+            dateReturnTitle.frame = CGRect(x: w * 0.1, y: h * 0.7, width: w * 0.7, height: h * 0.3)
+            dateReturnTitle.text = "\(dateOfRedDot)"
+            dateReturnTitle.textColor = .black
+            dateReturnTitle.font = UIFont.systemFont(ofSize: 25)
+            viewOfCell.addSubview(dateReturnTitle)
+            
+        }
         
-        money.frame = CGRect(x: w * 0.1, y: h * 0.35, width: w * 0.7, height: h * 0.3)
-        money.text = "金額："
-        money.textColor = .black
-        money.font = UIFont.systemFont(ofSize: 23)
-        viewOfCell.addSubview(money)
-        moneyTitle.frame = CGRect(x: w * 0.1, y: h * 0.45, width: w * 0.7, height: h * 0.3)
-        moneyTitle.text = "\(moneyOfRedDot)"
-        moneyTitle.textColor = .black
-        moneyTitle.font = UIFont.systemFont(ofSize: 25)
-        viewOfCell.addSubview(moneyTitle)
-        
-        dateReturn.frame = CGRect(x: w * 0.1, y: h * 0.6, width: w * 0.7, height: h * 0.3)
-        dateReturn.text = "期限："
-        dateReturn.textColor = .black
-        dateReturn.font = UIFont.systemFont(ofSize: 23)
-        viewOfCell.addSubview(dateReturn)
-        dateReturnTitle.frame = CGRect(x: w * 0.1, y: h * 0.7, width: w * 0.7, height: h * 0.3)
-        dateReturnTitle.text = "\(dateOfRedDot)"
-        dateReturnTitle.textColor = .black
-        dateReturnTitle.font = UIFont.systemFont(ofSize: 25)
-        viewOfCell.addSubview(dateReturnTitle)
-        
+//        name.frame = CGRect(x: w * 0.1, y: h * 0.1, width: w * 0.7, height: h * 0.3)
+//        name.text = "\(nameOfRedDot)"
+//        name.textColor = .black
+//        name.font = UIFont.systemFont(ofSize: 35)
+//        viewOfCell.addSubview(name)
+//
+//        money.frame = CGRect(x: w * 0.1, y: h * 0.35, width: w * 0.7, height: h * 0.3)
+//        money.text = "金額："
+//        money.textColor = .black
+//        money.font = UIFont.systemFont(ofSize: 23)
+//        viewOfCell.addSubview(money)
+//        moneyTitle.frame = CGRect(x: w * 0.1, y: h * 0.45, width: w * 0.7, height: h * 0.3)
+//        moneyTitle.text = "\(moneyOfRedDot)"
+//        moneyTitle.textColor = .black
+//        moneyTitle.font = UIFont.systemFont(ofSize: 25)
+//        viewOfCell.addSubview(moneyTitle)
+//
+//        dateReturn.frame = CGRect(x: w * 0.1, y: h * 0.6, width: w * 0.7, height: h * 0.3)
+//        dateReturn.text = "期限："
+//        dateReturn.textColor = .black
+//        dateReturn.font = UIFont.systemFont(ofSize: 23)
+//        viewOfCell.addSubview(dateReturn)
+//        dateReturnTitle.frame = CGRect(x: w * 0.1, y: h * 0.7, width: w * 0.7, height: h * 0.3)
+//        dateReturnTitle.text = "\(dateOfRedDot)"
+//        dateReturnTitle.textColor = .black
+//        dateReturnTitle.font = UIFont.systemFont(ofSize: 25)
+//        viewOfCell.addSubview(dateReturnTitle)
+//
     }
 
     

@@ -22,13 +22,34 @@ var savePassword:String = ""
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var emailBackImage: UIImageView!
     
     @IBOutlet weak var passwordField: UITextField!
+    
+    @IBOutlet weak var passwordBackImage: UIImageView!
+    
+    @IBOutlet weak var btnBack: UIButton!
+    
+    @IBOutlet weak var btnEnter: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        //MARK:sizeChange
+        let width = view.frame.width
+        let height = view.frame.height
+        emailBackImage.frame = CGRect(x: width*0.5 - 170, y: height*0.3 - 24, width: 340, height: 48)
+        emailField.frame = CGRect(x: width*0.5 - 150, y: height*0.3 - 24, width: 300, height: 48)
+        passwordBackImage.frame = CGRect(x: width*0.5 - 170, y: height*0.4 - 24, width: 340, height: 48)
+        passwordField.frame = CGRect(x: width*0.5 - 150, y: height*0.4 - 24, width: 300, height: 48)
+        
+        btnBack.frame = CGRect(x: width*0.5 - 136, y: height*0.5 - 21, width: 272, height: 43)
+        btnEnter.frame = CGRect(x: width*0.5 - 136, y: height*0.6 - 21, width: 272, height: 43)
+        
+        
         emailField.delegate = self
         passwordField.delegate = self
         print("nowUserName:\(nowUserName)")

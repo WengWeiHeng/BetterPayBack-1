@@ -16,11 +16,19 @@ class MenuViewController: UIViewController {
     
     
     @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var btnLoggin: UIButton!
+    @IBOutlet weak var btnRegister: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //MARK:sizeChange
+        let width = view.frame.width
+        let height = view.frame.height
+        iconImage.frame = CGRect(x: width*0.5 - 120, y: height*0.3 - 117, width: 240, height: 234)
+        btnLoggin.frame = CGRect(x: width*0.5 - 136, y: height*0.6 - 21, width: 272, height: 43)
+        btnRegister.frame = CGRect(x: width*0.5 - 136, y: height*0.7 - 21, width: 272, height: 43)
     }
     
     override func viewDidAppear(_ animated: Bool) {
