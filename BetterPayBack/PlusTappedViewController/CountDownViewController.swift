@@ -48,10 +48,12 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
         //MARK:sizeChange
         let width = view.frame.width
         let height = view.frame.height
-        countDownTableView.frame = CGRect(x: 0, y: height*0.2, width: width, height: height*0.59)//414 532
+        
         
         //MARK:sizeChange
         if width > 414{
+            countDownTableView.frame = CGRect(x: 0, y: height*0.2, width: width, height: height*0.59)//414 532
+            
             barImage.image = UIImage(named: "homeIndicator3")
             barImage.frame = CGRect(x: -1, y: view.frame.height - 123, width: width, height: 123)
             view.addSubview(barImage)
@@ -69,6 +71,8 @@ class CountDownViewController: UIViewController,UITableViewDelegate,UITableViewD
             view.addSubview(profileButton)
             
         }else{
+            countDownTableView.frame = CGRect(x: 0, y: 230, width: width, height: 532)//414 532
+            
             barImage.image = UIImage(named: "homeIndicator2")
             barImage.frame = CGRect(x: -3, y: view.frame.height - 128, width: view.frame.width + 5, height: 128)
             view.addSubview(barImage)

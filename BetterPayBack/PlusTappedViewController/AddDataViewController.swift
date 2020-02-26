@@ -12,13 +12,16 @@ import Firebase
 
 
 
-class AddDataViewController: UIViewController,UITextFieldDelegate {
+class AddDataViewController: UIViewController,UITextFieldDelegate,UIScrollViewDelegate {
     
     //userTotalMoney保存する配列
     //var userTotalMoneyArray = [NSManagedObject]()
     var userTotalMoneyArrayInt : [Int] = []
     
     var sumOfUserTotalMoneyArrayInt : Int = 0
+    
+    //textFieldがkeyBoardに隠されないように
+    var scrollView = UIScrollView()
     
     
     @IBOutlet weak var nameLabel: UILabel!
@@ -132,8 +135,8 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
         reasonImg.frame = CGRect(x: width*0.5 - width*0.39, y: height*0.81 - height*0.025, width: width*0.78, height: height*0.05)//324 48
         reasonField.frame = CGRect(x: width*0.5 - width*0.32, y: height*0.81 - height*0.025, width: width*0.67, height: height*0.05)//280 48
         
-        returnButton.frame = CGRect(x: width*0.5 - width*0.35, y: height*0.9 - height*0.025, width: 130, height: 64)//130 64
-        checkButton.frame = CGRect(x: width*0.5 + width*0.18, y: height*0.9 - height*0.025, width: 130, height: 64)//130 64
+        returnButton.frame = CGRect(x: width*0.5 - width*0.37, y: height*0.9 - height*0.025, width: 130, height: 64)//130 64
+        checkButton.frame = CGRect(x: width*0.5 + width*0.05, y: height*0.9 - height*0.025, width: 130, height: 64)//130 64
         
         
         
@@ -147,29 +150,149 @@ class AddDataViewController: UIViewController,UITextFieldDelegate {
         
         
         
-        nameField.delegate = self
-        moneyField.delegate = self
-        reasonField.delegate = self
-        yearBorrow.delegate = self
-        monthBorrow.delegate = self
-        dayBorrow.delegate = self
-        hourBorrow.delegate = self
-        minuteBorrow.delegate = self
-        yearReturn.delegate = self
-        monthReturn.delegate = self
-        dayReturn.delegate = self
-        hourReturn.delegate = self
-        minuteReturn.delegate = self
+        nameField.delegate = self //tag:1
+        moneyField.delegate = self //tag:7
+        reasonField.delegate = self //tag:13
+        yearBorrow.delegate = self //tag:2
+        monthBorrow.delegate = self //tag:3
+        dayBorrow.delegate = self //tag:4
+        hourBorrow.delegate = self //tag:5
+        minuteBorrow.delegate = self //tag:6
+        yearReturn.delegate = self //tag:8
+        monthReturn.delegate = self //tag:9
+        dayReturn.delegate = self //tag:10
+        hourReturn.delegate = self //tag:11
+        minuteReturn.delegate = self //tag:12
+        
+        nameField.tag = 1
+        yearBorrow.tag = 2
+        monthBorrow.tag = 3
+        dayBorrow.tag = 4
+        hourBorrow.tag = 5
+        minuteBorrow.tag = 6
+        moneyField.tag = 7
+        yearReturn.tag = 8
+        monthReturn.tag = 9
+        dayReturn.tag = 10
+        hourReturn.tag = 11
+        minuteReturn.tag = 12
+        reasonField.tag = 13
         
         
+        scrollView.delegate = self
+        scrollView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+ 
+        view.addSubview(returnButton)
+        view.addSubview(checkButton)
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        view.bringSubviewToFront(nameField)
+//        view.bringSubviewToFront(returnButton)
+//        view.bringSubviewToFront(checkButton)
+ 
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField.tag >= 7 && textField.tag <= 13{
+            //self.configureObserver()
+            print("move")
+            scrollView.addSubview(moneyField)
+            scrollView.addSubview(yearReturn)
+            scrollView.addSubview(monthReturn)
+            scrollView.addSubview(dayReturn)
+            scrollView.addSubview(hourReturn)
+            scrollView.addSubview(minuteReturn)
+            scrollView.addSubview(reasonField)
+            view.addSubview(scrollView)
+            
+            configureObserver()
+            
+//            view.bringSubviewToFront(nameField)
+//            view.bringSubviewToFront(returnButton)
+//            view.bringSubviewToFront(checkButton)
+            view.bringSubviewToFront(nameField)
+            view.bringSubviewToFront(yearBorrow)
+            view.bringSubviewToFront(monthBorrow)
+            view.bringSubviewToFront(dayBorrow)
+            view.bringSubviewToFront(hourBorrow)
+            view.bringSubviewToFront(minuteBorrow)
+            view.bringSubviewToFront(returnButton)
+            view.bringSubviewToFront(checkButton)
+        }else{
+            print("don't move")
+            //scrollView.removeFromSuperview()
+            //nameField.removeFromSuperview()
+            
+            view.bringSubviewToFront(nameField)
+            view.bringSubviewToFront(yearBorrow)
+            view.bringSubviewToFront(monthBorrow)
+            view.bringSubviewToFront(dayBorrow)
+            view.bringSubviewToFront(hourBorrow)
+            view.bringSubviewToFront(minuteBorrow)
+            view.bringSubviewToFront(returnButton)
+            view.bringSubviewToFront(checkButton)
+        }
+        
+        return true
+    }
+    
+
+    
     //keyboardを閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
+        //self.view.endEditing(true)
+        moneyField.resignFirstResponder()
+        yearReturn.resignFirstResponder()
+        monthReturn.resignFirstResponder()
+        dayReturn.resignFirstResponder()
+        hourReturn.resignFirstResponder()
+        minuteReturn.resignFirstResponder()
+        reasonField.resignFirstResponder()
         return true
         
+    }
+    
+    // Notificationを設定
+    func configureObserver() {
+        
+        let notification = NotificationCenter.default
+        
+        notification.addObserver(
+            self,
+            selector: #selector(self.keyboardWillShow(notification:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        
+        notification.addObserver(
+            self,
+            selector: #selector(self.keyboardWillHide(notification:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+    
+    // Notificationを削除
+    func removeObserver() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func keyboardWillShow(notification:Notification?){
+        let rect = (notification?.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!) {
+            self.view.transform = CGAffineTransform(translationX: 0, y: -(rect?.size.height)!)
+        }
+    }
+    
+    @objc func keyboardWillHide(notification:Notification?){
+        let duration: TimeInterval? = notification?.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? Double
+        UIView.animate(withDuration: duration!) {
+            self.view.transform = CGAffineTransform.identity
+        }
     }
     
     

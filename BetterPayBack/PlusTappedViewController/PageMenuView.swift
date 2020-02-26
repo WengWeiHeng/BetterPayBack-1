@@ -125,7 +125,7 @@ extension PageMenuView: UIScrollViewDelegate {
     
     fileprivate func setupMenuButtons() {
         //menuXを40から105変わる
-        var menuX = 220 as CGFloat
+        var menuX = 105 as CGFloat
         for i in 1...viewControllers.count {
             let viewControllerIndex = i - 1
             
@@ -143,7 +143,7 @@ extension PageMenuView: UIScrollViewDelegate {
             
             // Resize Menu item based on option
             let buttonWidth = getMenuButtonWidth(button: menuButton)
-            let d = CGRect(x: menuX, y: foundationView.frame.height*0.4,
+            let d = CGRect(x: menuX, y: foundationView.frame.height*0.3,
                            width: buttonWidth,
                            height: 50)
             menuButton.frame = d
@@ -394,7 +394,7 @@ class ChartView: UIView {
     /// 円グラフの軸となる円を表示
     private func drawBaseChart() {
         
-        let shapeFrame = CGRect.init(x: 60, y: 62, width: self.frame.width, height: self.frame.height)
+        let shapeFrame = CGRect.init(x: 0, y: 62, width: self.frame.width, height: self.frame.height)
         caShapeLayerForBase.frame = shapeFrame
         // グラフ下地の色
         caShapeLayerForBase.strokeColor = UIColor(red: 18/255, green: 21/255, blue: 91/255, alpha: 1.0).cgColor
@@ -411,7 +411,7 @@ class ChartView: UIView {
     
     /// 円グラフの値を示す円（半円）を表示
     private func drawValueChart(rate: Double) {
-        let shapeFrame = CGRect.init(x: 60, y: 62, width: self.frame.width, height: self.frame.height)
+        let shapeFrame = CGRect.init(x: 0, y: 62, width: self.frame.width, height: self.frame.height)
         caShapeLayerForValue.frame = shapeFrame
         
         // CAShareLayerのデザイン

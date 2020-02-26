@@ -38,6 +38,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         // Do any additional setup after loading the view.
         
+        emailField.attributedPlaceholder = NSAttributedString(string: "メールアドレス", attributes: [NSAttributedString.Key.foregroundColor : UIColor.orange])
+        passwordField.attributedPlaceholder = NSAttributedString(string: "パスワード(6桁数字)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.orange])
+        
         //MARK:sizeChange
         let width = view.frame.width
         let height = view.frame.height
