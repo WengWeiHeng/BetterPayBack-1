@@ -34,6 +34,7 @@
 		7FA8158123E78DFB00EC819B /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8158023E78DFB00EC819B /* PasswordViewController.swift */; };
 		7FB0E44C23E813A500D967E2 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB0E44B23E813A500D967E2 /* SetUpViewController.swift */; };
 		7FB6C33023E3EBD50072BFF6 /* CalendarPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB6C32F23E3EBD50072BFF6 /* CalendarPopUpViewController.swift */; };
+		B0B4A47124C1CA9C00992A42 /* BranchTestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B4A47024C1CA9C00992A42 /* BranchTestController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		7FA8158023E78DFB00EC819B /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		7FB0E44B23E813A500D967E2 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		7FB6C32F23E3EBD50072BFF6 /* CalendarPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPopUpViewController.swift; sourceTree = "<group>"; };
+		B0B4A47024C1CA9C00992A42 /* BranchTestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchTestController.swift; sourceTree = "<group>"; };
 		C3B6E583F6FD7D9E6027D941 /* Pods-BetterPayBack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterPayBack.debug.xcconfig"; path = "Target Support Files/Pods-BetterPayBack/Pods-BetterPayBack.debug.xcconfig"; sourceTree = "<group>"; };
 		D4F4D1AF47C94D203B77DBF6 /* Pods-BetterPayBack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetterPayBack.release.xcconfig"; path = "Target Support Files/Pods-BetterPayBack/Pods-BetterPayBack.release.xcconfig"; sourceTree = "<group>"; };
 		FABB841B5BAC517D6DAD0D2D /* Pods_BetterPayBack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BetterPayBack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +148,7 @@
 				7F9686E323E1752D0068A92C /* MenuViewController.swift */,
 				7FA8158023E78DFB00EC819B /* PasswordViewController.swift */,
 				7FB0E44B23E813A500D967E2 /* SetUpViewController.swift */,
+				B0B4A47024C1CA9C00992A42 /* BranchTestController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				7FA8158123E78DFB00EC819B /* PasswordViewController.swift in Sources */,
 				7F9686DA23E0433C0068A92C /* CountDownTableViewCell.swift in Sources */,
 				7F9686C823E03A550068A92C /* StatisticViewController.swift in Sources */,
+				B0B4A47124C1CA9C00992A42 /* BranchTestController.swift in Sources */,
 				7FB0E44C23E813A500D967E2 /* SetUpViewController.swift in Sources */,
 				7F9686AD23E035250068A92C /* AppDelegate.swift in Sources */,
 			);
